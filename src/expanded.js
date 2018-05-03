@@ -2,7 +2,7 @@ import dispatch from "./dispatch";
 import {isarray, isindex} from "./array";
 import inspectCollapsed from "./collapsed";
 import formatSymbol from "./formatSymbol";
-import {inspect, replace} from "./index";
+import {inspect, replace} from "./inspect";
 import {isown, symbolsof, tagof, valueof} from "./object";
 
 export default function inspectExpanded(object) {

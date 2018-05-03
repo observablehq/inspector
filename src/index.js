@@ -13,7 +13,7 @@ const {prototype: {toString}} = Object;
 
 const LOCATION_MATCH = /\s+\(\d+:\d+\)$/m;
 
-export default class Inspector {
+export class Inspector {
   constructor(node) {
     this._node = node;
   }

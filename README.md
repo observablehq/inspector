@@ -1,4 +1,4 @@
-# @observablehq/notebook-runtime
+# @observablehq/notebook-inspector
 
 This library implements the default value rendering implementation for Observable notebooks. When plugged in to the [notebook-runtime](https://github.com/observablehq/notebook-runtime), this inspector can be used to insert DOM elements into a webpage, or render an interactive object inspector for JavaScript values.
 

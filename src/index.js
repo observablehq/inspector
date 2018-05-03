@@ -13,12 +13,49 @@ const {prototype: {toString}} = Object;
 
 const LOCATION_MATCH = /\s+\(\d+:\d+\)$/m;
 
-export function inspector(node) {
-  return {
-    pending: () => displayPending(node),
-    fulfilled: (value) => displayValue(node, value),
-    rejected: (error) => displayError(node, error)
-  };
+export default class Inspector {
+  constructor(node) {
+    this._node = node;
+  }
+
+  pending() {
+    const {_node} = this;
+    if (!_node) return;
+    _node.classList.add("O--running");
+  }
+
+  fulfilled(value) {
+    const {_node} = this;
+    if (!_node) return;
+    if (!(value instanceof Element || value instanceof Text) || (value.parentNode && value.parentNode !== _node)) {
+      value = inspect(value, false, _node.firstChild // TODO Do this better.
+          && _node.firstChild.classList
+          && _node.firstChild.classList.contains("O--expanded"));
+      value.classList.add("O--inspect");
+    }
+    _node.className = "O";
+    if (_node.firstChild !== value) {
+      if (_node.firstChild) {
+        while (_node.lastChild !== _node.firstChild) _node.removeChild(_node.lastChild);
+        _node.replaceChild(value, _node.firstChild);
+      } else {
+        _node.appendChild(value);
+      }
+    }
+    dispatch(_node, "update");
+  }
+
+  rejected(error) {
+    const {_node} = this;
+    if (!_node) return;
+    _node.className = "O O--error";
+    while (_node.lastChild) _node.removeChild(_node.lastChild);
+    var span = document.createElement("span");
+    span.className = "O--inspect";
+    span.textContent = (error + "").replace(LOCATION_MATCH, "");
+    _node.appendChild(span);
+    dispatch(_node, "error", {error: error});
+  }
 }
 
 export function inspect(value, shallow, expand) {
@@ -53,40 +90,4 @@ export function replace(spanOld, spanNew) {
   if (spanOld.classList.contains("O--inspect")) spanNew.classList.add("O--inspect");
   spanOld.parentNode.replaceChild(spanNew, spanOld);
   dispatch(spanNew, "load");
-}
-
-export function displayPending(node) {
-  if (!node) return;
-  node.classList.add("O--running");
-}
-
-export function displayValue(node, value) {
-  if (!node) return;
-  if (!(value instanceof Element || value instanceof Text) || (value.parentNode && value.parentNode !== node)) {
-    value = inspect(value, false, node.firstChild // TODO Do this better.
-        && node.firstChild.classList
-        && node.firstChild.classList.contains("O--expanded"));
-    value.classList.add("O--inspect");
-  }
-  node.className = "O";
-  if (node.firstChild !== value) {
-    if (node.firstChild) {
-      while (node.lastChild !== node.firstChild) node.removeChild(node.lastChild);
-      node.replaceChild(value, node.firstChild);
-    } else {
-      node.appendChild(value);
-    }
-  }
-  dispatch(node, "update");
-}
-
-export function displayError(node, error) {
-  if (!node) return;
-  node.className = "O O--error";
-  while (node.lastChild) node.removeChild(node.lastChild);
-  var span = document.createElement("span");
-  span.className = "O--inspect";
-  span.textContent = (error + "").replace(LOCATION_MATCH, "");
-  node.appendChild(span);
-  dispatch(node, "error", {error: error});
 }

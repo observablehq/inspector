@@ -13,6 +13,14 @@ const {prototype: {toString}} = Object;
 
 const LOCATION_MATCH = /\s+\(\d+:\d+\)$/m;
 
+export function inspector(node) {
+  return {
+    pending: () => displayPending(node),
+    fulfilled: (value) => displayValue(node, value),
+    rejected: (error) => displayError(node, error)
+  };
+}
+
 export function inspect(value, shallow, expand) {
   let type = typeof value;
   switch (type) {

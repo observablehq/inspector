@@ -24,7 +24,7 @@ export default function inspectExpanded(object) {
   }
 
   const span = document.createElement("span");
-  span.className = "observable--expanded";
+  span.className = "Observable--expanded";
   const a = span.appendChild(document.createElement("a"));
   a.textContent = `▾${tag}${arrayish ? " [" : " {"}`;
   a.addEventListener("mouseup", function(event) {
@@ -39,7 +39,7 @@ export default function inspectExpanded(object) {
 
   if (!next.done) {
     const a = span.appendChild(document.createElement("a"));
-    a.className = "observable--field";
+    a.className = "Observable--field";
     a.style.display = "block";
     a.appendChild(document.createTextNode(`  … more`));
     a.addEventListener("mouseup", function(event) {
@@ -75,34 +75,34 @@ function* iterateSet(set) {
 function* iterateArray(array) {
   for (let i = 0, n = array.length; i < n; ++i) {
     if (i in array) {
-      yield formatField(i, valueof(array, i), "observable--index");
+      yield formatField(i, valueof(array, i), "Observable--index");
     }
   }
   for (const key in array) {
     if (!isindex(key) && isown(array, key)) {
-      yield formatField(key, valueof(array, key), "observable--key");
+      yield formatField(key, valueof(array, key), "Observable--key");
     }
   }
   for (const symbol of symbolsof(array)) {
-    yield formatField(formatSymbol(symbol), valueof(array, symbol), "observable--symbol");
+    yield formatField(formatSymbol(symbol), valueof(array, symbol), "Observable--symbol");
   }
 }
 
 function* iterateObject(object) {
   for (const key in object) {
     if (isown(object, key)) {
-      yield formatField(key, valueof(object, key), "observable--key");
+      yield formatField(key, valueof(object, key), "Observable--key");
     }
   }
   for (const symbol of symbolsof(object)) {
-    yield formatField(formatSymbol(symbol), valueof(object, symbol), "observable--symbol");
+    yield formatField(formatSymbol(symbol), valueof(object, symbol), "Observable--symbol");
   }
 }
 
 function formatField(key, value, className) {
   const item = document.createElement("div");
   const span = item.appendChild(document.createElement("span"));
-  item.className = "observable--field";
+  item.className = "Observable--field";
   span.className = className;
   span.textContent = `  ${key}`;
   item.appendChild(document.createTextNode(": "));
@@ -112,7 +112,7 @@ function formatField(key, value, className) {
 
 function formatMapField(key, value) {
   const item = document.createElement("div");
-  item.className = "observable--field";
+  item.className = "Observable--field";
   item.appendChild(document.createTextNode("  "));
   item.appendChild(inspect(key));
   item.appendChild(document.createTextNode(" => "));
@@ -122,7 +122,7 @@ function formatMapField(key, value) {
 
 function formatSetField(value) {
   const item = document.createElement("div");
-  item.className = "observable--field";
+  item.className = "Observable--field";
   item.appendChild(document.createTextNode("  "));
   item.appendChild(inspect(value));
   return item;

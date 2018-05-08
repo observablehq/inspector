@@ -15,7 +15,7 @@
 }
 
 
-.observable {
+.Observable {
   font: 17px/1.5 "Iowan Old Style", "Apple Garamond", Baskerville,
     "Palatino Linotype",
     "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif,
@@ -25,12 +25,12 @@
   color: #1b1e23;
 }
 
-.observable h1,
-.observable h2,
-.observable h3,
-.observable h4,
-.observable h5,
-.observable h6 {
+.Observable h1,
+.Observable h2,
+.Observable h3,
+.Observable h4,
+.Observable h5,
+.Observable h6 {
   color: #333;
   font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
@@ -38,51 +38,51 @@
   margin: 0;
 }
 
-.observable h2 ~ p,
-.observable h3 ~ p,
-.observable h4 ~ p {
+.Observable h2 ~ p,
+.Observable h3 ~ p,
+.Observable h4 ~ p {
   margin-top: 0;
 }
 
-.observable a[href] {
+.Observable a[href] {
   text-decoration: none;
 }
 
-.observable a[href]:hover {
+.Observable a[href]:hover {
   text-decoration: underline;
 }
 
-.observable h1 code,
-.observable h2 code,
-.observable h3 code,
-.observable h4 code,
-.observable h5 code,
-.observable h6 code {
+.Observable h1 code,
+.Observable h2 code,
+.Observable h3 code,
+.Observable h4 code,
+.Observable h5 code,
+.Observable h6 code {
   font-size: 90%;
 }
 
-.observable pre,
-.observable code,
-.observable tt {
+.Observable pre,
+.Observable code,
+.Observable tt {
   font: var(--mono_fonts);
 }
 
-.observable img {
+.Observable img {
   max-width: calc(100vw - 28px);
 }
 
-.observable p,
-.observable .katex-display {
+.Observable p,
+.Observable .katex-display {
   max-width: 640px;
 }
 
-.observable blockquote,
-.observable ol,
-.observable ul {
+.Observable blockquote,
+.Observable ol,
+.Observable ul {
   max-width: 600px;
 }
 
-.observable hr {
+.Observable hr {
   height: 1px;
   margin: 1em 0;
   padding: 1em 0;
@@ -90,28 +90,28 @@
   background: no-repeat center/100% 1px linear-gradient(to right,rgba(0,0,0,.05),rgba(0,0,0,.05));
 }
 
-.observable pre {
+.Observable pre {
   padding: 2px 0;
 }
 
-.observable input:not([type]),
-.observable input[type=email],
-.observable input[type=number],
-.observable input[type=password],
-.observable input[type=range],
-.observable input[type=search],
-.observable input[type=tel],
-.observable input[type=text],
-.observable input[type=url] {
+.Observable input:not([type]),
+.Observable input[type=email],
+.Observable input[type=number],
+.Observable input[type=password],
+.Observable input[type=range],
+.Observable input[type=search],
+.Observable input[type=tel],
+.Observable input[type=text],
+.Observable input[type=url] {
   width: 320px;
 }
 
-.observable input,
-.observable canvas {
+.Observable input,
+.Observable canvas {
   vertical-align: middle;
 }
 
-.observable table {
+.Observable table {
   width: 100%;
   max-width: 640px;
   border-collapse: collapse;
@@ -119,91 +119,91 @@
   font-size: 14px;
 }
 
-.observable th {
+.Observable th {
   text-align: left;
 }
 
-.observable tr:not(:last-child) {
+.Observable tr:not(:last-child) {
   border-bottom: solid 1px #eee;
 }
 
-.observable thead tr {
+.Observable thead tr {
   border-bottom: solid 1px #ccc;
 }
 
-.observable--expanded,
-.observable--collapsed,
-.observable--function,
-.observable--import,
-.observable--string:before,
-.observable--string:after,
-.observable--gray {
+.Observable--expanded,
+.Observable--collapsed,
+.Observable--function,
+.Observable--import,
+.Observable--string:before,
+.Observable--string:after,
+.Observable--gray {
   color: var(--syntax_normal);
 }
 
-.observable--collapsed,
-.observable--inspect a {
+.Observable--collapsed,
+.Observable--inspect a {
   cursor: pointer;
 }
 
-.observable--field {
+.Observable--field {
   text-indent: -1em;
   margin-left: 1em;
 }
 
-.observable--empty {
+.Observable--empty {
   color: var(--syntax_comment);
 }
 
-.observable a[href],
-.observable--keyword,
-.observable--blue {
+.Observable a[href],
+.Observable--keyword,
+.Observable--blue {
   color: #3182bd;
 }
 
-.observable--forbidden,
-.observable--pink {
+.Observable--forbidden,
+.Observable--pink {
   color: #e377c2;
 }
 
-.observable--orange {
+.Observable--orange {
   color: #e6550d;
 }
 
-.observable--null,
-.observable--undefined,
-.observable--boolean {
+.Observable--null,
+.Observable--undefined,
+.Observable--boolean {
   color: var(--syntax_atom);
 }
 
-.observable--number,
-.observable--date,
-.observable--regexp,
-.observable--symbol,
-.observable--green {
+.Observable--number,
+.Observable--date,
+.Observable--regexp,
+.Observable--symbol,
+.Observable--green {
   color: var(--syntax_number);
 }
 
-.observable--index,
-.observable--key {
+.Observable--index,
+.Observable--key {
   color: var(--syntax_key);
 }
 
-.observable--empty {
+.Observable--empty {
   font-style: oblique;
 }
 
-.observable--string,
-.observable--purple {
+.Observable--string,
+.Observable--purple {
   color: var(--syntax_string);
 }
 
-.observable--error,
-.observable--red {
+.Observable--error,
+.Observable--red {
   color: #e7040f;
 }
 
-.observable--inspect {
+.Observable--inspect {
   font: var(--mono_fonts);
   overflow-x: auto;
   display: block;
@@ -211,16 +211,16 @@
   white-space: pre;
 }
 
-.observable--error {
+.Observable--error {
   border-left-color: #e7040f;
 }
 
-.observable--error .observable--inspect {
+.Observable--error .Observable--inspect {
   word-break: break-all;
   white-space: pre-wrap;
 }
 
-.observable--running,
-.observable--changed {
+.Observable--running,
+.Observable--changed {
   border-left-color: hsl(217, 13%, 70%);
 }

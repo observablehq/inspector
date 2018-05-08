@@ -34,13 +34,13 @@ export function inspect(value, shallow, expand) {
     }
   }
   const span = document.createElement("span");
-  span.className = `observable--${type}`;
+  span.className = `Observable--${type}`;
   span.textContent = value;
   return span;
 }
 
 export function replace(spanOld, spanNew) {
-  if (spanOld.classList.contains("observable--inspect")) spanNew.classList.add("observable--inspect");
+  if (spanOld.classList.contains("Observable--inspect")) spanNew.classList.add("Observable--inspect");
   spanOld.parentNode.replaceChild(spanNew, spanOld);
   dispatch(spanNew, "load");
 }

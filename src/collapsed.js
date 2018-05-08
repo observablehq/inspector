@@ -24,7 +24,7 @@ export default function inspectCollapsed(object, shallow) {
 
   if (shallow) {
     const span = document.createElement("span");
-    span.className = "observable--shallow";
+    span.className = "Observable--shallow";
     span.appendChild(document.createTextNode(tag));
     span.addEventListener("mouseup", function(event) {
       event.stopPropagation();
@@ -34,7 +34,7 @@ export default function inspectCollapsed(object, shallow) {
   }
 
   const span = document.createElement("span");
-  span.className = "observable--collapsed";
+  span.className = "Observable--collapsed";
   const a = span.appendChild(document.createElement("a"));
   a.textContent = `▸${tag}${arrayish ? " [" : " {"}`;
   span.addEventListener("mouseup", function(event) {
@@ -74,7 +74,7 @@ function* iterateArray(array) {
       let e = i1 - i0 - 1;
       if (e > 0) {
         const span = document.createElement("span");
-        span.className = "observable--empty";
+        span.className = "Observable--empty";
         span.textContent = e === 1 ? "empty" : `empty × ${i1 - i0 - 1}`;
         yield span;
       }
@@ -84,22 +84,22 @@ function* iterateArray(array) {
   }
   for (const key in array) {
     if (!isindex(key) && isown(array, key)) {
-      yield formatField(key, valueof(array, key), "observable--key");
+      yield formatField(key, valueof(array, key), "Observable--key");
     }
   }
   for (const symbol of symbolsof(array)) {
-    yield formatField(formatSymbol(symbol), valueof(array, symbol), "observable--symbol");
+    yield formatField(formatSymbol(symbol), valueof(array, symbol), "Observable--symbol");
   }
 }
 
 function* iterateObject(object) {
   for (const key in object) {
     if (isown(object, key)) {
-      yield formatField(key, valueof(object, key), "observable--key");
+      yield formatField(key, valueof(object, key), "Observable--key");
     }
   }
   for (const symbol of symbolsof(object)) {
-    yield formatField(formatSymbol(symbol), valueof(object, symbol), "observable--symbol");
+    yield formatField(formatSymbol(symbol), valueof(object, symbol), "Observable--symbol");
   }
 }
 

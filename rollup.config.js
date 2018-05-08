@@ -10,6 +10,6 @@ export default {
     banner: `// @observablehq/notebook-inspector Copyright ${(new Date).getFullYear()} Observable, Inc.`,
     file: "dist/notebook-inspector.js",
     format: "umd",
-    name: "O"
+    name: "Observable"
   }
 };

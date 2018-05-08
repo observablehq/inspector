@@ -8,7 +8,7 @@ export default {
   output: {
     extend: true,
     banner: `// @observablehq/notebook-inspector Copyright ${(new Date).getFullYear()} Observable, Inc.`,
-    file: "build/notebook-inspector.js",
+    file: "dist/notebook-inspector.js",
     format: "umd",
     name: "O"
   }

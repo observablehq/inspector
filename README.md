@@ -18,3 +18,13 @@ runtime.load(notebook, library, (variable) => {
   return new Inspector(element);
 });
 ```
+
+Or:
+
+```js
+runtime.load(notebook, library, (variable) => {
+  const div = document.createElement("div");
+  document.body.appendChild(div);
+  return new Inspector(div);
+});
+```

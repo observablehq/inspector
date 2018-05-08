@@ -8,7 +8,7 @@
   },
   "scripts": {
     "precommit": "eslint .",
-    "prepublishOnly": "rollup -c && cp src/style.css build/notebook-inspector-style.css"
+    "prepublishOnly": "rollup -c && cp src/style.css dist/notebook-inspector-style.css"
   },
   "esm": {
     "mode": "all",

@@ -15,8 +15,8 @@ export function inspect(value, shallow, expand) {
   let type = typeof value;
   switch (type) {
     case "boolean":
-    case "number":
     case "undefined": { value += ""; break; }
+    case "number": { value = value === 0 && 1 / value < 0 ? "-0" : value + ""; break; }
     case "string": { value = formatString(value, shallow === false); break; }
     case "symbol": { value = formatSymbol(value); break; }
     case "function": { return inspectFunction(value); }

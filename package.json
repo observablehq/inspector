@@ -20,6 +20,7 @@
   "devDependencies": {
     "eslint": "^4.12.1",
     "rollup": "^0.52.0",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^3.0.0"
   }
 }

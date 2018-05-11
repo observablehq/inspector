@@ -2,7 +2,7 @@
 
 This library implements the default value rendering implementation for Observable notebooks. When plugged in to the [notebook-runtime](https://github.com/observablehq/notebook-runtime), this inspector can be used to insert DOM elements into a webpage, or render an interactive object inspector for JavaScript values.
 
-The **notebook-inspector** may be loaded from [npm](https://www.npmjs.com/package/@observablehq/notebook-inspector), or on the web, from unpkg, as an [ES module](https://unpkg.com/@observablehq/notebook-inspector/src/index.js?module) or as a [UMD script](https://unpkg.com/@observablehq/notebook-inspector/dist/notebook-inspector.js).
+The **notebook-inspector** may be loaded from [npm](https://www.npmjs.com/package/@observablehq/notebook-inspector), or on the web, from unpkg, as an [ES module](https://unpkg.com/@observablehq/notebook-inspector?module) or as a [UMD script](https://unpkg.com/@observablehq/notebook-inspector/dist/notebook-inspector.umd.js).
 
 ## API Reference
 

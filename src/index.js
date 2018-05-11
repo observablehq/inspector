@@ -10,7 +10,7 @@ export class Inspector {
   }
 
   pending() {
-    this._node.classList.add("Observable--running");
+    this._node.classList.add("observablehq--running");
   }
 
   fulfilled(value) {
@@ -18,10 +18,10 @@ export class Inspector {
     if (!(value instanceof Element || value instanceof Text) || (value.parentNode && value.parentNode !== _node)) {
       value = inspect(value, false, _node.firstChild // TODO Do this better.
           && _node.firstChild.classList
-          && _node.firstChild.classList.contains("Observable--expanded"));
-      value.classList.add("Observable--inspect");
+          && _node.firstChild.classList.contains("observablehq--expanded"));
+      value.classList.add("observablehq--inspect");
     }
-    _node.className = "Observable";
+    _node.className = "observablehq";
     if (_node.firstChild !== value) {
       if (_node.firstChild) {
         while (_node.lastChild !== _node.firstChild) _node.removeChild(_node.lastChild);
@@ -35,10 +35,10 @@ export class Inspector {
 
   rejected(error) {
     const {_node} = this;
-    _node.className = "Observable Observable--error";
+    _node.className = "observablehq observablehq--error";
     while (_node.lastChild) _node.removeChild(_node.lastChild);
     var span = document.createElement("span");
-    span.className = "Observable--inspect";
+    span.className = "observablehq--inspect";
     span.textContent = (error + "").replace(LOCATION_MATCH, "");
     _node.appendChild(span);
     dispatch(_node, "error", {error: error});

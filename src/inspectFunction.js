@@ -50,9 +50,9 @@ export default function inspectFunction(f) {
 
 function formatFunction(type, name) {
   var span = document.createElement("span");
-  span.className = "Observable--function";
+  span.className = "observablehq--function";
   var spanType = span.appendChild(document.createElement("span"));
-  spanType.className = "Observable--keyword";
+  spanType.className = "observablehq--keyword";
   spanType.textContent = type.prefix;
   span.appendChild(document.createTextNode(" " + name));
   return span;

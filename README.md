@@ -33,7 +33,7 @@ The Inspector implements the [notebook-runtime](https://github.com/observablehq/
 
 <a href="#inspector_pending" name="inspector_pending">#</a> *inspector*.**pending**()
 
-Called whenever the variable associated with this inspector is being evaluated. The variable may resolve synchronously or asynchronously — so the inspector is considered to be in a *pending* state until either **fulfilled** or **rejected** is subsequently called. While *pending*, this inspector adds an `Observable--running` class to the associated DOM node.
+Called whenever the variable associated with this inspector is being evaluated. The variable may resolve synchronously or asynchronously — so the inspector is considered to be in a *pending* state until either **fulfilled** or **rejected** is subsequently called. While *pending*, this inspector adds an `observablehq--running` class to the associated DOM node.
 
 <a href="#inspector_fulfilled" name="inspector_fulfilled">#</a> *inspector*.**fulfilled**(value)
 

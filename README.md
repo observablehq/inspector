@@ -28,3 +28,17 @@ runtime.load(notebook, library, (variable) => {
   return new Inspector(div);
 });
 ```
+
+The Inspector implements the [notebook-runtime](https://github.com/observablehq/notebook-runtime)’s *observer* interface by exposing **pending**, **fulfilled** and **rejected** methods, which are called by the runtime whenever the inspected variable is being evaluated; has been evaluated successfully, producing a value; or has failed to evaluate, producing an error.
+
+<a href="#inspector_pending" name="inspector_pending">#</a> *inspector*.**pending**()
+
+Called whenever the variable associated with this inspector is being evaluated. The variable may resolve synchronously or asynchronously — so the inspector is considered to be in a *pending* state until either **fulfilled** or **rejected** is subsequently called. While *pending*, this inspector adds an `Observable--running` class to the associated DOM node.
+
+<a href="#inspector_fulfilled" name="inspector_fulfilled">#</a> *inspector*.**fulfilled**(value)
+
+Called whenever the variable associated with this inspector has been evaluated successfully, producing a new value. This Inspector will insert Elements into the DOM, and build expandable inspectors for other JavaScript values.
+
+<a href="#inspector_rejected" name="inspector_rejected">#</a> *inspector*.**rejected**(error)
+
+Called whenever the variable associated with this inspector has failed to evaluate, producing an error. This inspector inserts the content of the error object into the DOM.

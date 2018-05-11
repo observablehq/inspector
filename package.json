@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@observablehq/notebook-inspector",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "src/index",
   "module": "dist/notebook-inspector.js",
   "unpkg": "dist/notebook-inspector.umd.js",

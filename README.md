@@ -13,7 +13,7 @@ The **notebook-inspector** may be loaded from [npm](https://www.npmjs.com/packag
 Creates an *Inspector* object that can be passed as an *observer* to the **notebook-runtime**, attached to the given DOM *element*. When the runtime receives values or errors for a variable that has been computed, the inspector is responsible for updating the DOM.
 
 ```js
-runtime.load(notebook, library, (variable) => {
+Runtime.load(notebook, library, (variable) => {
   return new Inspector(document.getElementById(variable.name));
 });
 ```
@@ -21,7 +21,7 @@ runtime.load(notebook, library, (variable) => {
 Or, for a single variable:
 
 ```js
-runtime.load(notebook, library, (variable) => {
+Runtime.load(notebook, library, (variable) => {
   if (variable.name === "chart") {
     const div = document.createElement("div");
     document.body.appendChild(div);
@@ -49,11 +49,11 @@ Called whenever the variable associated with this inspector has failed to evalua
 Factory function returning a function that when called, will return new inspectors appended to the specified *element*. If you simply want to inspect all of the variables in a notebook, in order, this method provides a convenient shortcut.
 
 ```js
-runtime.load(notebook, Inspector.into(document.body));
+Runtime.load(notebook, Inspector.into(document.body));
 ```
 
 Or:
 
 ```js
-runtime.load(notebook, Inspector.into(".article .visualization"));
+Runtime.load(notebook, Inspector.into(".article .visualization"));
 ```

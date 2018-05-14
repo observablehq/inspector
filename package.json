@@ -1,10 +1,16 @@
 {
-  "private": true,
   "name": "@observablehq/notebook-inspector",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "license": "ISC",
   "main": "src/index",
+  "module": "dist/notebook-inspector.js",
+  "unpkg": "dist/notebook-inspector.umd.js",
   "author": {
     "name": "Observable, Inc."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/observablehq/notebook-inspector.git"
   },
   "scripts": {
     "precommit": "eslint .",
@@ -20,6 +26,7 @@
   "devDependencies": {
     "eslint": "^4.12.1",
     "rollup": "^0.52.0",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^3.0.0"
   }
 }

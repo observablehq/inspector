@@ -44,3 +44,13 @@ export class Inspector {
     dispatch(_node, "error", {error: error});
   }
 }
+
+Inspector.into = function(container) {
+  if (typeof container === "string") {
+    container = document.querySelector(container);
+    if (container == null) throw new Error("container not found");
+  }
+  return function() {
+    return new Inspector(container.appendChild(document.createElement("div")));
+  };
+};

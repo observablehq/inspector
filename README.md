@@ -8,28 +8,29 @@ The **notebook-inspector** may be loaded from [npm](https://www.npmjs.com/packag
 
 ### Inspector
 
-<a href="#Inspector" name="Inspector">#</a> new <b>Inspector</b>(element)
+<a href="#inspector" name="inspector">#</a> new <b>Inspector</b>(element)
 
 Creates an *Inspector* object that can be passed as an *observer* to the **notebook-runtime**, attached to the given DOM *element*. When the runtime receives values or errors for a variable that has been computed, the inspector is responsible for updating the DOM.
 
 ```js
 runtime.load(notebook, library, (variable) => {
-  const element = document.getElementById(variable.name);
-  return new Inspector(element);
+  return new Inspector(document.getElementById(variable.name));
 });
 ```
 
-Or:
+Or, for a single variable:
 
 ```js
 runtime.load(notebook, library, (variable) => {
-  const div = document.createElement("div");
-  document.body.appendChild(div);
-  return new Inspector(div);
+  if (variable.name === "chart") {
+    const div = document.createElement("div");
+    document.body.appendChild(div);
+    return new Inspector(div);
+  }
 });
 ```
 
-The Inspector implements the [notebook-runtime](https://github.com/observablehq/notebook-runtime)’s *observer* interface by exposing **pending**, **fulfilled** and **rejected** methods, which are called by the runtime whenever the inspected variable is being evaluated; has been evaluated successfully, producing a value; or has failed to evaluate, producing an error.
+The Inspector implements the **notebook-runtime’s** *observer* interface by exposing **pending**, **fulfilled** and **rejected** methods, which are called by the runtime whenever the inspected variable is being evaluated; has been evaluated successfully, producing a value; or has failed to evaluate, producing an error.
 
 <a href="#inspector_pending" name="inspector_pending">#</a> *inspector*.**pending**()
 
@@ -42,3 +43,17 @@ Called whenever the variable associated with this inspector has been evaluated s
 <a href="#inspector_rejected" name="inspector_rejected">#</a> *inspector*.**rejected**(error)
 
 Called whenever the variable associated with this inspector has failed to evaluate, producing an error. This inspector inserts the content of the error object into the DOM.
+
+<a href="#inspector_into" name="inspector_into">#</a><b>Inspector.into</b>(<i>element or selector</i>)
+
+Factory function returning a function that when called, will return new inspectors appended to the specified *element*. If you simply want to inspect all of the variables in a notebook, in order, this method provides a convenient shortcut.
+
+```js
+runtime.load(notebook, Inspector.into(document.body));
+```
+
+Or:
+
+```js
+runtime.load(notebook, Inspector.into(".article .visualization"));
+```

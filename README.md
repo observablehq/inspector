@@ -44,7 +44,7 @@ Called whenever the variable associated with this inspector has been evaluated s
 
 Called whenever the variable associated with this inspector has failed to evaluate, producing an error. This inspector inserts the content of the error object into the DOM.
 
-<a href="#inspector_into" name="inspector_into">#</a><b>Inspector.into</b>(<i>element or selector</i>)
+<a href="#inspector_into" name="inspector_into">#</a> **Inspector.into**(*element or selector*)
 
 Factory function returning a function that when called, will return new inspectors appended to the specified *element*. If you simply want to inspect all of the variables in a notebook, in order, this method provides a convenient shortcut.
 

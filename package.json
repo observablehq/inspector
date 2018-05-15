@@ -2,9 +2,8 @@
   "name": "@observablehq/notebook-inspector",
   "version": "1.0.0",
   "license": "ISC",
-  "main": "src/index",
+  "main": "dist/notebook-inspector.umd.js",
   "module": "dist/notebook-inspector.js",
-  "unpkg": "dist/notebook-inspector.umd.js",
   "author": {
     "name": "Observable, Inc."
   },
@@ -14,7 +13,8 @@
   },
   "scripts": {
     "precommit": "eslint .",
-    "prepublishOnly": "rollup -c && cp src/style.css dist/notebook-inspector-style.css"
+    "prepare": "rollup -c",
+    "prepublishOnly": "cp src/style.css dist/notebook-inspector-style.css"
   },
   "esm": {
     "mode": "all",

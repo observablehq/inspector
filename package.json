@@ -5,7 +5,8 @@
   "main": "dist/notebook-inspector.umd.js",
   "module": "dist/notebook-inspector.js",
   "author": {
-    "name": "Observable, Inc."
+    "name": "Observable, Inc.",
+    "url": "https://observablehq.com"
   },
   "repository": {
     "type": "git",

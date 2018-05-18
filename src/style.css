@@ -58,6 +58,7 @@
 }
 
 .observablehq--number,
+.observablehq--bigint,
 .observablehq--date,
 .observablehq--regexp,
 .observablehq--symbol,

@@ -12,7 +12,7 @@ export default function formatDate(date) {
           + pad(date.getHours(), 2) + ":"
           + pad(date.getMinutes(), 2) + ":"
           + pad(date.getSeconds(), 2) + "."
-          + pad(date.getMilliseconds(), 4)
+          + pad(date.getMilliseconds(), 3)
       : date.getSeconds() ? "T"
           + pad(date.getHours(), 2) + ":"
           + pad(date.getMinutes(), 2) + ":"

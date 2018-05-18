@@ -15,7 +15,7 @@
   "scripts": {
     "precommit": "eslint .",
     "prepare": "rollup -c",
-    "prepublishOnly": "cp src/style.css dist/notebook-inspector-style.css"
+    "prepublishOnly": "cleancss -o dist/notebook-inspector-style.css src/style.css "
   },
   "esm": {
     "mode": "all",
@@ -25,6 +25,7 @@
     "esm": "^3.0.5"
   },
   "devDependencies": {
+    "clean-css-cli": "^4.1.11",
     "eslint": "^4.12.1",
     "rollup": "^0.52.0",
     "rollup-plugin-node-resolve": "^3.0.0",

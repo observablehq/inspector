@@ -1,6 +1,6 @@
 # @observablehq/notebook-inspector
 
-This library implements the default value rendering implementation for Observable notebooks. When plugged in to the [Observable runtime](https://github.com/observablehq/notebook-runtime) as [observers](https://github.com/observablehq/notebook-runtime/blob/master/README.md#observers), inspectors can be used to insert DOM elements into the page, or to render interactive object inspectors for raw values.
+This library implements the default value rendering implementation for Observable notebooks. When plugged in to the [Observable runtime](https://github.com/observablehq/notebook-runtime) as [observers](https://github.com/observablehq/notebook-runtime/blob/master/README.md#observers), inspectors can be used to insert DOM elements into the page or to render interactive inspectors for arbitrary values.
 
 To install this library from [npm](https://www.npmjs.com/package/@observablehq/notebook-inspector):
 

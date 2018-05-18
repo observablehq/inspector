@@ -34,9 +34,7 @@ Inspects the specified *error*, replacing the contents of this inspector’s *el
 
 <a href="#inspector_into" name="inspector_into">#</a> Inspector.**into**(*container*) [<>](https://github.com/observablehq/notebook-inspector/blob/master/src/index.js "Source")
 
-Returns a function that when passed a given [*variable*](https://github.com/observablehq/notebook-runtime/blob/master/README.md#variables), returns a new [*inspector*](#inspectors) attached to a new DIV element within the specifier *container* element. If *container* is a string, it represents a selector, and the *container* element becomes the matching selected element.
-
-This method can be used with [Runtime.load](https://github.com/observablehq/notebook-runtime/blob/master/README.md#Runtime_load) as the observer factory to conveniently render an entire notebook. For example, to render into the body:
+Returns a function that when passed a given [*variable*](https://github.com/observablehq/notebook-runtime/blob/master/README.md#variables), returns a new [*inspector*](#inspectors) attached to a new DIV element within the specifier *container* element. If *container* is a string, it represents a selector, and the *container* element becomes the matching selected element. This method can be used with [Runtime.load](https://github.com/observablehq/notebook-runtime/blob/master/README.md#Runtime_load) as the observer factory to conveniently render an entire notebook. For example, to render into the body:
 
 ```js
 Runtime.load(notebook, Inspector.into(document.body));

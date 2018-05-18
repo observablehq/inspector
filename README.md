@@ -20,6 +20,28 @@ An inspector implements the Observable runtime’s [*Observer* interface](https:
 
 Creates a new inspector attached to the specified DOM *element*.
 
+For example, to render a notebook into elements whose id attribute matches the variable name:
+
+```js
+Runtime.load(notebook, (variable) => {
+  return new Inspector(document.getElementById(variable.name));
+});
+```
+
+Or, to render a single variable into a new DIV element appended to the body:
+
+```js
+Runtime.load(notebook, (variable) => {
+  if (variable.name === "chart") {
+    const div = document.createElement("div");
+    document.body.appendChild(div);
+    return new Inspector(div);
+  }
+});
+```
+
+See also [Inspector.into](#Inspector_into).
+
 <a href="#inspector_pending" name="inspector_pending">#</a> *inspector*.**pending**() [<>](https://github.com/observablehq/notebook-inspector/blob/master/src/index.js "Source")
 
 Applies the `observablehq-running` class to this inspector’s *element*.

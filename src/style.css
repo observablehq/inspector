@@ -10,7 +10,7 @@
   --syntax_known_variable: #005f87;
   --syntax_matchbracket: #20bbfc;
   --syntax_key: #6636b4;
-  --mono_fonts: 14px/1.5 Menlo, Consolas, monospace;
+  --mono_fonts: 80%/1.5 Menlo, Consolas, monospace;
 }
 
 .observablehq--expanded,

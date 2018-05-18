@@ -23,7 +23,7 @@ Creates a new inspector attached to the specified DOM *element*.
 For example, to render a notebook into elements whose id attribute matches the variable name:
 
 ```js
-Runtime.load(notebook, (variable) => {
+Runtime.load(notebook, variable => {
   return new Inspector(document.getElementById(variable.name));
 });
 ```
@@ -31,7 +31,7 @@ Runtime.load(notebook, (variable) => {
 Or, to render a single variable into a new DIV element appended to the body:
 
 ```js
-Runtime.load(notebook, (variable) => {
+Runtime.load(notebook, variable => {
   if (variable.name === "chart") {
     const div = document.createElement("div");
     document.body.appendChild(div);

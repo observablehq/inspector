@@ -6,53 +6,37 @@ The **notebook-inspector** may be loaded from [npm](https://www.npmjs.com/packag
 
 ## API Reference
 
-### Inspector
+### Inspectors
 
-<a href="#inspector" name="inspector">#</a> new <b>Inspector</b>(element)
+An inspector implements the Observable runtime’s [*Observer* interface](https://github.com/observablehq/notebook-runtime/blob/master/README.md#observers) by rendering the current value of its associated [variable](https://github.com/observablehq/notebook-runtime/blob/master/README.md#variables) to a given DOM element. Inspectors display DOM elements “as-is”, and create interactive “devtools”-style inspectors for other arbitrary values such as numbers and objects.
 
-Creates an *Inspector* object that can be passed as an *observer* to the **notebook-runtime**, attached to the given DOM *element*. When the runtime receives values or errors for a variable that has been computed, the inspector is responsible for updating the DOM.
+<a href="#Inspector" name="Inspector">#</a> new **Inspector**(*element*) [<>](https://github.com/observablehq/notebook-inspector/blob/master/src/index.js "Source")
 
-```js
-Runtime.load(notebook, library, (variable) => {
-  return new Inspector(document.getElementById(variable.name));
-});
-```
+Creates a new inspector attached to the specified DOM *element*.
 
-Or, for a single variable:
+<a href="#inspector_pending" name="inspector_pending">#</a> *inspector*.**pending**() [<>](https://github.com/observablehq/notebook-inspector/blob/master/src/index.js "Source")
 
-```js
-Runtime.load(notebook, library, (variable) => {
-  if (variable.name === "chart") {
-    const div = document.createElement("div");
-    document.body.appendChild(div);
-    return new Inspector(div);
-  }
-});
-```
+Applies the `observablehq-running` class to this inspector’s *element*.
 
-The Inspector implements the **notebook-runtime’s** *observer* interface by exposing **pending**, **fulfilled** and **rejected** methods, which are called by the runtime whenever the inspected variable is being evaluated; has been evaluated successfully, producing a value; or has failed to evaluate, producing an error.
+<a href="#inspector_fulfilled" name="inspector_fulfilled">#</a> *inspector*.**fulfilled**(*value*) [<>](https://github.com/observablehq/notebook-inspector/blob/master/src/index.js "Source")
 
-<a href="#inspector_pending" name="inspector_pending">#</a> *inspector*.**pending**()
+Inspects the specified *value*, replacing the contents of this inspector’s *element* as appropriate, and dispatching an *update* event. If the specified *value* is a DOM element or text node, and the *value* is not already attached to the DOM, it is inserted into this inspector’s *element*, replacing any existing contents. Otherwise, for other arbitrary values such as numbers, arrays, or objects, an expandable display of the specified *value* is generated into this inspector’s *element*. Applies the `observablehq` class to this inspector’s *element*, and for non-element *value*s, the `observablehq--inspect` class.
 
-Called whenever the variable associated with this inspector is being evaluated. The variable may resolve synchronously or asynchronously — so the inspector is considered to be in a *pending* state until either **fulfilled** or **rejected** is subsequently called. While *pending*, this inspector adds an `observablehq--running` class to the associated DOM node.
+<a href="#inspector_rejected" name="inspector_rejected">#</a> *inspector*.**rejected**(*error*) [<>](https://github.com/observablehq/notebook-inspector/blob/master/src/index.js "Source")
 
-<a href="#inspector_fulfilled" name="inspector_fulfilled">#</a> *inspector*.**fulfilled**(value)
+Inspects the specified *error*, replacing the contents of this inspector’s *element* as appropriate with the error’s description, and dispatching an *error* event. Applies the `observablehq` and `observablehq--error` class to this inspector’s *element*.
 
-Called whenever the variable associated with this inspector has been evaluated successfully, producing a new value. This Inspector will insert Elements into the DOM, and build expandable inspectors for other JavaScript values.
+<a href="#inspector_into" name="inspector_into">#</a> Inspector.**into**(*container*)
 
-<a href="#inspector_rejected" name="inspector_rejected">#</a> *inspector*.**rejected**(error)
+Returns a function that when passed a given [*variable*](https://github.com/observablehq/notebook-runtime/blob/master/README.md#variables), returns a new [*inspector*](#inspectors) attached to a new DIV element within the specifier *container* element. If *container* is a string, it represents a selector, and the *container* element becomes the matching selected element.
 
-Called whenever the variable associated with this inspector has failed to evaluate, producing an error. This inspector inserts the content of the error object into the DOM.
-
-<a href="#inspector_into" name="inspector_into">#</a> **Inspector.into**(*element or selector*)
-
-Factory function returning a function that when called, will return new inspectors appended to the specified *element*. If you simply want to inspect all of the variables in a notebook, in order, this method provides a convenient shortcut.
+This method can be used with [Runtime.load](https://github.com/observablehq/notebook-runtime/blob/master/README.md#Runtime_load) as the observer factory to conveniently render an entire notebook. For example, to render into the body:
 
 ```js
 Runtime.load(notebook, Inspector.into(document.body));
 ```
 
-Or:
+To render into a specific element:
 
 ```js
 Runtime.load(notebook, Inspector.into(".article .visualization"));

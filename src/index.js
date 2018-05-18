@@ -5,14 +5,13 @@ const LOCATION_MATCH = /\s+\(\d+:\d+\)$/m;
 
 export class Inspector {
   constructor(node) {
-    if (!node) throw new Error("Cannot create Inspector without a node");
+    if (!node) throw new Error("invalid node");
     this._node = node;
+    node.className = "observablehq";
   }
-
   pending() {
     this._node.classList.add("observablehq--running");
   }
-
   fulfilled(value) {
     const {_node} = this;
     if (!(value instanceof Element || value instanceof Text) || (value.parentNode && value.parentNode !== _node)) {
@@ -32,7 +31,6 @@ export class Inspector {
     }
     dispatch(_node, "update");
   }
-
   rejected(error) {
     const {_node} = this;
     _node.className = "observablehq observablehq--error";

@@ -7,10 +7,12 @@ export class Inspector {
   constructor(node) {
     if (!node) throw new Error("invalid node");
     this._node = node;
-    node.className = "observablehq";
+    node.classList.add("observablehq");
   }
   pending() {
-    this._node.classList.add("observablehq--running");
+    const {_node} = this;
+    _node.classList.remove("observablehq--error");
+    _node.classList.add("observablehq--running");
   }
   fulfilled(value) {
     const {_node} = this;
@@ -20,7 +22,7 @@ export class Inspector {
           && _node.firstChild.classList.contains("observablehq--expanded"));
       value.classList.add("observablehq--inspect");
     }
-    _node.className = "observablehq";
+    _node.classList.remove("observablehq--running", "observablehq--error");
     if (_node.firstChild !== value) {
       if (_node.firstChild) {
         while (_node.lastChild !== _node.firstChild) _node.removeChild(_node.lastChild);
@@ -33,7 +35,8 @@ export class Inspector {
   }
   rejected(error) {
     const {_node} = this;
-    _node.className = "observablehq observablehq--error";
+    _node.classList.remove("observablehq--running");
+    _node.classList.add("observablehq--error");
     while (_node.lastChild) _node.removeChild(_node.lastChild);
     var span = document.createElement("span");
     span.className = "observablehq--inspect";

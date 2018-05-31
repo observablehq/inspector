@@ -13,7 +13,7 @@
     "url": "https://github.com/observablehq/notebook-inspector.git"
   },
   "scripts": {
-    "test": "jest",
+    "test": "rollup -c && jest",
     "precommit": "eslint .",
     "prepare": "rollup -c",
     "prepublishOnly": "cleancss -o dist/notebook-inspector-style.css src/style.css "

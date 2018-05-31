@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Inspector .fulfilled(element) 1`] = `
+R {
+  "_node": <div
+    class="observablehq"
+  >
+    <span>
+      Surprise!
+    </span>
+  </div>,
+}
+`;
+
+exports[`Inspector .fulfilled(value) 1`] = `
+R {
+  "_node": <div
+    class="observablehq"
+  >
+    <span
+      class="observablehq--collapsed observablehq--inspect"
+    >
+      <a>
+        ▸Array(3) [
+      </a>
+      <span
+        class="observablehq--number"
+      >
+        1
+      </span>
+      , 
+      <span
+        class="observablehq--number"
+      >
+        2
+      </span>
+      , 
+      <span
+        class="observablehq--number"
+      >
+        3
+      </span>
+      ]
+    </span>
+  </div>,
+}
+`;
+
+exports[`Inspector .pending() 1`] = `
+R {
+  "_node": <div
+    class="observablehq observablehq--running"
+  />,
+}
+`;
+
+exports[`Inspector .rejected(Error) 1`] = `
+R {
+  "_node": <div
+    class="observablehq observablehq--error"
+  >
+    <span
+      class="observablehq--inspect"
+    >
+      Error: Danger!
+    </span>
+  </div>,
+}
+`;
+
+exports[`Inspector initial state 1`] = `
+R {
+  "_node": <div
+    class="observablehq"
+  />,
+}
+`;
+
+exports[`into into(div) 1`] = `
+<div>
+  <div
+    class="observablehq"
+  >
+    <span
+      class="observablehq--number observablehq--inspect"
+    >
+      42
+    </span>
+  </div>
+</div>
+`;

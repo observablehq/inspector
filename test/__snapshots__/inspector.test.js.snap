@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic inspector fulfilled with a complex vlaue 1`] = `
+R {
+  "_node": <div
+    class="observablehq"
+  >
+    <span
+      class="observablehq--collapsed observablehq--inspect"
+    >
+      <a>
+        ▸Array(3) [
+      </a>
+      <span
+        class="observablehq--number"
+      >
+        1
+      </span>
+      , 
+      <span
+        class="observablehq--number"
+      >
+        2
+      </span>
+      , 
+      <span
+        class="observablehq--number"
+      >
+        3
+      </span>
+      ]
+    </span>
+  </div>,
+}
+`;
+
+exports[`basic inspector fulfilled with an element 1`] = `
+R {
+  "_node": <div
+    class="observablehq"
+  >
+    <span>
+      Surprise!
+    </span>
+  </div>,
+}
+`;
+
+exports[`basic inspector initial state 1`] = `
+R {
+  "_node": <div
+    class="observablehq"
+  />,
+}
+`;
+
+exports[`basic inspector pending state 1`] = `
+R {
+  "_node": <div
+    class="observablehq observablehq--running"
+  />,
+}
+`;
+
+exports[`basic inspector rejected state 1`] = `
+R {
+  "_node": <div
+    class="observablehq observablehq--error"
+  >
+    <span
+      class="observablehq--inspect"
+    >
+      Error: Danger!
+    </span>
+  </div>,
+}
+`;

@@ -1,7 +1,7 @@
 /* eslint-env jest */
-var Inspector = require("../dist/notebook-inspector.umd.js").Inspector;
+const { Inspector } = require("../dist/notebook-inspector.umd.js");
 
-describe("basic inspector", () => {
+describe("Inspector", () => {
   let inspector;
   beforeEach(() => {
     const elem = document.createElement("div");
@@ -12,25 +12,40 @@ describe("basic inspector", () => {
     expect(inspector).toMatchSnapshot();
   });
 
-  test("pending state", () => {
+  test(".pending()", () => {
     inspector.pending();
     expect(inspector).toMatchSnapshot();
   });
 
-  test("fulfilled with an element", () => {
+  test(".fulfilled(element)", () => {
     const span = document.createElement("span");
     span.textContent = "Surprise!";
     inspector.fulfilled(span);
     expect(inspector).toMatchSnapshot();
   });
 
-  test("fulfilled with a complex vlaue", () => {
+  test(".fulfilled(value)", () => {
     inspector.fulfilled([1, 2, 3]);
     expect(inspector).toMatchSnapshot();
   });
 
-  test("rejected state", () => {
+  test(".rejected(Error)", () => {
     inspector.rejected(new Error("Danger!"));
     expect(inspector).toMatchSnapshot();
+  });
+});
+
+describe("into", () => {
+  test("into('invalid id')", () => {
+    expect(() => {
+      Inspector.into("unknown-id");
+    }).toThrow();
+  });
+
+  test("into(div)", () => {
+    const container = document.createElement("div");
+    const inspector = Inspector.into(container)();
+    inspector.fulfilled(42);
+    expect(container).toMatchSnapshot();
   });
 });

@@ -1,6 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic inspector fulfilled with a complex vlaue 1`] = `
+exports[`Inspector .fulfilled(element) 1`] = `
+R {
+  "_node": <div
+    class="observablehq"
+  >
+    <span>
+      Surprise!
+    </span>
+  </div>,
+}
+`;
+
+exports[`Inspector .fulfilled(value) 1`] = `
 R {
   "_node": <div
     class="observablehq"
@@ -34,27 +46,7 @@ R {
 }
 `;
 
-exports[`basic inspector fulfilled with an element 1`] = `
-R {
-  "_node": <div
-    class="observablehq"
-  >
-    <span>
-      Surprise!
-    </span>
-  </div>,
-}
-`;
-
-exports[`basic inspector initial state 1`] = `
-R {
-  "_node": <div
-    class="observablehq"
-  />,
-}
-`;
-
-exports[`basic inspector pending state 1`] = `
+exports[`Inspector .pending() 1`] = `
 R {
   "_node": <div
     class="observablehq observablehq--running"
@@ -62,7 +54,7 @@ R {
 }
 `;
 
-exports[`basic inspector rejected state 1`] = `
+exports[`Inspector .rejected(Error) 1`] = `
 R {
   "_node": <div
     class="observablehq observablehq--error"
@@ -74,4 +66,26 @@ R {
     </span>
   </div>,
 }
+`;
+
+exports[`Inspector initial state 1`] = `
+R {
+  "_node": <div
+    class="observablehq"
+  />,
+}
+`;
+
+exports[`into into(div) 1`] = `
+<div>
+  <div
+    class="observablehq"
+  >
+    <span
+      class="observablehq--number observablehq--inspect"
+    >
+      42
+    </span>
+  </div>
+</div>
 `;

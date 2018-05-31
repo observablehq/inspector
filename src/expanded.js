@@ -26,7 +26,12 @@ export default function inspectExpanded(object) {
   const span = document.createElement("span");
   span.className = "observablehq--expanded";
   const a = span.appendChild(document.createElement("a"));
-  a.textContent = `▾${tag}${arrayish ? " [" : " {"}`;
+  const svg = a.appendChild(document.createElementNS("http://www.w3.org/2000/svg", "svg"));
+  svg.setAttribute("width", 16);
+  svg.setAttribute("height", 16);
+  svg.style.verticalAlign = "middle";
+  svg.innerHTML = "<path d='M8 12L3 4h10z' fill='currentColor' />";
+  a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
   a.addEventListener("mouseup", function(event) {
     event.stopPropagation();
     replace(span, inspectCollapsed(object));

@@ -13,6 +13,7 @@
     "url": "https://github.com/observablehq/notebook-inspector.git"
   },
   "scripts": {
+    "test": "rollup -c && jest",
     "precommit": "eslint .",
     "prepare": "rollup -c",
     "prepublishOnly": "cleancss -o dist/notebook-inspector-style.css src/style.css "
@@ -27,6 +28,7 @@
   "devDependencies": {
     "clean-css-cli": "^4.1.11",
     "eslint": "^4.12.1",
+    "jest": "^23.1.0",
     "rollup": "^0.52.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^3.0.0"

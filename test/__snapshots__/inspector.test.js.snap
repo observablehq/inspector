@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Inspector .fulfilled(element) 1`] = `
+<div
+  class="observablehq"
+>
+  <span>
+    Surprise!
+  </span>
+</div>
+`;
+
+exports[`Inspector .fulfilled(value) 1`] = `
+<div
+  class="observablehq"
+>
+  <span
+    class="observablehq--collapsed observablehq--inspect"
+  >
+    <a>
+      <svg
+        height="16"
+        style="vertical-align: middle;"
+        width="16"
+      >
+        <path
+          d="M12 8l-8 5V3z"
+          fill="currentColor"
+        />
+      </svg>
+      Array(3) [
+    </a>
+    <span
+      class="observablehq--number"
+    >
+      1
+    </span>
+    , 
+    <span
+      class="observablehq--number"
+    >
+      2
+    </span>
+    , 
+    <span
+      class="observablehq--number"
+    >
+      3
+    </span>
+    ]
+  </span>
+</div>
+`;
+
+exports[`Inspector .fulfilled(value) 2`] = `
+<div
+  class="observablehq"
+>
+  <span
+    class="observablehq--expanded observablehq--inspect"
+  >
+    <a>
+      <svg
+        height="16"
+        style="vertical-align: middle;"
+        width="16"
+      >
+        <path
+          d="M8 12L3 4h10z"
+          fill="currentColor"
+        />
+      </svg>
+      Array(3) [
+    </a>
+    <div
+      class="observablehq--field"
+    >
+      <span
+        class="observablehq--index"
+      >
+          0
+      </span>
+      : 
+      <span
+        class="observablehq--number"
+      >
+        1
+      </span>
+    </div>
+    <div
+      class="observablehq--field"
+    >
+      <span
+        class="observablehq--index"
+      >
+          1
+      </span>
+      : 
+      <span
+        class="observablehq--number"
+      >
+        2
+      </span>
+    </div>
+    <div
+      class="observablehq--field"
+    >
+      <span
+        class="observablehq--index"
+      >
+          2
+      </span>
+      : 
+      <span
+        class="observablehq--number"
+      >
+        3
+      </span>
+    </div>
+    ]
+  </span>
+</div>
+`;
+
+exports[`Inspector .pending() 1`] = `
+<div
+  class="observablehq observablehq--running"
+/>
+`;
+
+exports[`Inspector .rejected(Error) 1`] = `
+<div
+  class="observablehq observablehq--error"
+>
+  <span
+    class="observablehq--inspect"
+  >
+    Error: Danger!
+  </span>
+</div>
+`;
+
+exports[`Inspector initial state 1`] = `
+<div
+  class="observablehq"
+/>
+`;
+
+exports[`into into(div) 1`] = `
+<div>
+  <div
+    class="observablehq"
+  >
+    <span
+      class="observablehq--number observablehq--inspect"
+    >
+      42
+    </span>
+  </div>
+</div>
+`;

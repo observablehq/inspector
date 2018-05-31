@@ -16,7 +16,8 @@
     "test": "rollup -c && jest",
     "precommit": "eslint .",
     "prepare": "rollup -c",
-    "prepublishOnly": "cleancss -o dist/notebook-inspector-style.css src/style.css "
+    "prepublishOnly": "cleancss -o dist/notebook-inspector-style.css src/style.css",
+    "postpublish": "git push && git push --tags"
   },
   "esm": {
     "mode": "all",

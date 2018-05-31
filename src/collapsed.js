@@ -36,7 +36,12 @@ export default function inspectCollapsed(object, shallow) {
   const span = document.createElement("span");
   span.className = "observablehq--collapsed";
   const a = span.appendChild(document.createElement("a"));
-  a.textContent = `▸${tag}${arrayish ? " [" : " {"}`;
+  const svg = a.appendChild(document.createElementNS("http://www.w3.org/2000/svg", "svg"));
+  svg.setAttribute("width", 16);
+  svg.setAttribute("height", 16);
+  svg.style.verticalAlign = "middle";
+  svg.innerHTML = "<path d='M12 8l-8 5V3z' fill='currentColor' />";
+  a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
   span.addEventListener("mouseup", function(event) {
     event.stopPropagation();
     replace(span, inspectExpanded(object));

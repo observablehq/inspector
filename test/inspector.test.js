@@ -2,36 +2,37 @@
 const { Inspector } = require("../dist/notebook-inspector.umd.js");
 
 describe("Inspector", () => {
-  let inspector;
+  let inspector, elem;
   beforeEach(() => {
-    const elem = document.createElement("div");
+    elem = document.createElement("div");
     inspector = new Inspector(elem);
   });
 
   test("initial state", () => {
-    expect(inspector).toMatchSnapshot();
+    expect(elem).toMatchSnapshot();
   });
 
   test(".pending()", () => {
     inspector.pending();
-    expect(inspector).toMatchSnapshot();
+    expect(elem).toMatchSnapshot();
   });
 
-  test(".fulfilled(element)", () => {
-    const span = document.createElement("span");
+  test(".fulfilled(element)", () => { const span = document.createElement("span");
     span.textContent = "Surprise!";
     inspector.fulfilled(span);
-    expect(inspector).toMatchSnapshot();
+    expect(elem).toMatchSnapshot();
   });
 
   test(".fulfilled(value)", () => {
     inspector.fulfilled([1, 2, 3]);
-    expect(inspector).toMatchSnapshot();
+    expect(elem).toMatchSnapshot();
+    elem.querySelector("a").dispatchEvent(new MouseEvent("mouseup"));
+    expect(elem).toMatchSnapshot();
   });
 
   test(".rejected(Error)", () => {
     inspector.rejected(new Error("Danger!"));
-    expect(inspector).toMatchSnapshot();
+    expect(elem).toMatchSnapshot();
   });
 });
 

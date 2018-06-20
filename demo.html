@@ -131,19 +131,35 @@ a[href],
 <body class='sans-serif flex flex-column justify-stretch vh-100'>
 <div class='pa4'><div id='inspectorOutput'></div></div>
 <div class='flex flex-column pa4'>
-<div><label class='ttu' for='input'>input (JSON)</label></div>
+<div><label class='ttu' for='input'>input (JavaScript)</label></div>
 <textarea class='code pa2 ba' id='input'>[1, 2, 3]</textarea>
+<div id='demos' class='mt4'>
+  <h3>Fixed demos</h3>
+</div>
 </div>
 <script type='module'>
 import {Inspector} from "./src/index.js";
 let inspector = new Inspector(inspectorOutput);
 function update() {
   try {
-    inspector.fulfilled(JSON.parse(input.value));
+    inspector.fulfilled((new Function(`return ${input.value}`))());
   } catch(e) { }
 }
 input.addEventListener('input', update);
 update();
+
+function fixed(input) {
+  (new Inspector(demos.appendChild(document.createElement('div')))).fulfilled(input);
+}
+fixed([1, 2, 3, [2, 3]])
+fixed(function a() {})
+fixed(a => {})
+fixed(function* a() {})
+fixed(new Map([[1, 2]]))
+fixed(new Set([1, 2]))
+fixed({a:2, [Symbol('hi')]: 3})
+fixed(new Uint8Array([1, 2, 3]))
+fixed(new Uint16Array([1, 2, 3]))
 </script>
 </body>
 </html>

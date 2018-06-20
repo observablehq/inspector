@@ -95,6 +95,23 @@ exports[`Inspector .fulfilled(function value) 5`] = `
 </div>
 `;
 
+exports[`Inspector .fulfilled(function value) 6`] = `
+<div
+  class="observablehq"
+>
+  <span
+    class="observablehq--function observablehq--inspect"
+  >
+    <span
+      class="observablehq--keyword"
+    >
+      ƒ
+    </span>
+     [not a bound function]()
+  </span>
+</div>
+`;
+
 exports[`Inspector .fulfilled(value) 1`] = `
 <div
   class="observablehq"

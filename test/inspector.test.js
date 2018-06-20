@@ -42,6 +42,11 @@ describe("Inspector", () => {
     expect(elem).toMatchSnapshot();
     inspector.fulfilled((function a() {}).bind());
     expect(elem).toMatchSnapshot();
+
+    let sym = Symbol('not a bound function');
+    let obj = { [sym]: function() {} };
+    inspector.fulfilled(obj[sym]); // eslint-disable-line no-unused-vars
+    expect(elem).toMatchSnapshot();
   });
 
   test(".rejected(Error)", () => {

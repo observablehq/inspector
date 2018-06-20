@@ -15,7 +15,7 @@ export default function inspectFunction(f) {
     default: type = /^class\b/.test(t) ? TYPE_CLASS : TYPE_FUNCTION; break;
   }
 
-  var functionName = (f.name || "").replace("bound ", "");
+  var functionName = (f.name || "").replace(/^bound /, "");
 
   // A class, possibly named.
   // class Name

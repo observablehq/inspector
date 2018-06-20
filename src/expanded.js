@@ -1,9 +1,9 @@
-import dispatch from "./dispatch";
-import {isarray, isindex} from "./array";
-import inspectCollapsed from "./collapsed";
-import formatSymbol from "./formatSymbol";
-import {inspect, replace} from "./inspect";
-import {isown, symbolsof, tagof, valueof} from "./object";
+import dispatch from "./dispatch.js";
+import {isarray, isindex} from "./array.js";
+import inspectCollapsed from "./collapsed.js";
+import formatSymbol from "./formatSymbol.js";
+import {inspect, replace} from "./inspect.js";
+import {isown, symbolsof, tagof, valueof} from "./object.js";
 
 export default function inspectExpanded(object) {
   const arrayish = isarray(object);
@@ -26,11 +26,9 @@ export default function inspectExpanded(object) {
   const span = document.createElement("span");
   span.className = "observablehq--expanded";
   const a = span.appendChild(document.createElement("a"));
-  const svg = a.appendChild(document.createElementNS("http://www.w3.org/2000/svg", "svg"));
-  svg.setAttribute("width", 16);
-  svg.setAttribute("height", 16);
-  svg.style.verticalAlign = "middle";
-  svg.innerHTML = "<path d='M8 12L3 4h10z' fill='currentColor' />";
+  a.innerHTML =`<svg width=8 height=8 class='observablehq--caret'>
+    <path d='M4 7L0 1h8z' fill='currentColor' />
+  </svg>`;
   a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
   a.addEventListener("mouseup", function(event) {
     event.stopPropagation();

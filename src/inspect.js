@@ -1,13 +1,13 @@
-import dispatch from "./dispatch";
-import inspectCollapsed from "./collapsed";
-import inspectExpanded from "./expanded";
-import formatDate from "./formatDate";
-import formatError from "./formatError";
-import formatRegExp from "./formatRegExp";
-import formatString from "./formatString";
-import formatSymbol from "./formatSymbol";
-import inspectFunction from "./inspectFunction";
-import {FORBIDDEN} from "./object";
+import dispatch from "./dispatch.js";
+import inspectCollapsed from "./collapsed.js";
+import inspectExpanded from "./expanded.js";
+import formatDate from "./formatDate.js";
+import formatError from "./formatError.js";
+import formatRegExp from "./formatRegExp.js";
+import formatString from "./formatString.js";
+import formatSymbol from "./formatSymbol.js";
+import inspectFunction from "./inspectFunction.js";
+import {FORBIDDEN} from "./object.js";
 
 const {prototype: {toString}} = Object;
 

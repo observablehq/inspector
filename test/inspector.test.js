@@ -17,7 +17,8 @@ describe("Inspector", () => {
     expect(elem).toMatchSnapshot();
   });
 
-  test(".fulfilled(element)", () => { const span = document.createElement("span");
+  test(".fulfilled(element)", () => {
+    const span = document.createElement("span");
     span.textContent = "Surprise!";
     inspector.fulfilled(span);
     expect(elem).toMatchSnapshot();
@@ -27,6 +28,24 @@ describe("Inspector", () => {
     inspector.fulfilled([1, 2, 3]);
     expect(elem).toMatchSnapshot();
     elem.querySelector("a").dispatchEvent(new MouseEvent("mouseup"));
+    expect(elem).toMatchSnapshot();
+  });
+
+  test(".fulfilled(function value)", () => {
+    inspector.fulfilled(async function(a) {}); // eslint-disable-line no-unused-vars
+    expect(elem).toMatchSnapshot();
+    inspector.fulfilled(function* (a) {}); // eslint-disable-line no-unused-vars
+    expect(elem).toMatchSnapshot();
+    inspector.fulfilled(a => {}); // eslint-disable-line no-unused-vars
+    expect(elem).toMatchSnapshot();
+    inspector.fulfilled(function a() {});
+    expect(elem).toMatchSnapshot();
+    inspector.fulfilled((function a() {}).bind());
+    expect(elem).toMatchSnapshot();
+
+    let sym = Symbol('not a bound function');
+    let obj = { [sym]: function() {} };
+    inspector.fulfilled(obj[sym]); // eslint-disable-line no-unused-vars
     expect(elem).toMatchSnapshot();
   });
 

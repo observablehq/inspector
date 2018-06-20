@@ -15,10 +15,12 @@ export default function inspectFunction(f) {
     default: type = /^class\b/.test(t) ? TYPE_CLASS : TYPE_FUNCTION; break;
   }
 
+  var functionName = (f.name || "").replace(/^bound /, "");
+
   // A class, possibly named.
   // class Name
   if (type === TYPE_CLASS) {
-    return formatFunction(type, f.name || "");
+    return formatFunction(type, functionName);
   }
 
   // An arrow function with a single argument.
@@ -41,11 +43,11 @@ export default function inspectFunction(f) {
   // async function name(…)
   // async function* name(…)
   if (m = /^(?:async\s*)?function(?:\s*\*)?(?:\s*\w+)?\s*\(\s*(\w+(?:\s*,\s*\w+)*)?\s*\)/.exec(t)) {
-    return formatFunction(type, (f.name || "") + (m[1] ? "(" + m[1].replace(/\s*,\s*/g, ", ") + ")" : "()"));
+    return formatFunction(type, functionName + (m[1] ? "(" + m[1].replace(/\s*,\s*/g, ", ") + ")" : "()"));
   }
 
   // Something else, like destructuring, comments or default values.
-  return formatFunction(type, (f.name || "") + "(…)");
+  return formatFunction(type, functionName + "(…)");
 }
 
 function formatFunction(type, name) {

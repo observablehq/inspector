@@ -3,3 +3,4 @@
 .esm-cache/
 dist/*.zip
 test/
+demo.html

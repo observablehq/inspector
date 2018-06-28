@@ -1,5 +1,5 @@
-import dispatch from "./dispatch";
-import {inspect} from "./inspect";
+import dispatch from "./dispatch.js";
+import {inspect} from "./inspect.js";
 
 const LOCATION_MATCH = /\s+\(\d+:\d+\)$/m;
 

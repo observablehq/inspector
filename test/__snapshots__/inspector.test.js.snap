@@ -19,14 +19,18 @@ exports[`Inspector .fulfilled(value) 1`] = `
   >
     <a>
       <svg
-        height="16"
-        style="vertical-align: middle;"
-        width="16"
+        class="observablehq--caret"
+        height="8"
+        width="8"
       >
+        
+    
         <path
-          d="M12 8l-8 5V3z"
+          d="M7 4L1 8V0z"
           fill="currentColor"
         />
+        
+  
       </svg>
       Array(3) [
     </a>
@@ -61,14 +65,18 @@ exports[`Inspector .fulfilled(value) 2`] = `
   >
     <a>
       <svg
-        height="16"
-        style="vertical-align: middle;"
-        width="16"
+        class="observablehq--caret"
+        height="8"
+        width="8"
       >
+        
+    
         <path
-          d="M8 12L3 4h10z"
+          d="M4 7L0 1h8z"
           fill="currentColor"
         />
+        
+  
       </svg>
       Array(3) [
     </a>

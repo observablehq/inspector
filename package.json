@@ -24,14 +24,14 @@
     "cjs": true
   },
   "dependencies": {
-    "esm": "^3.0.5"
+    "esm": "^3.0.76"
   },
   "devDependencies": {
-    "clean-css-cli": "^4.1.11",
-    "eslint": "^4.12.1",
-    "jest": "^23.1.0",
-    "rollup": "^0.52.0",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-uglify": "^3.0.0"
+    "clean-css-cli": "^4.2.1",
+    "eslint": "^5.3.0",
+    "jest": "^23.5.0",
+    "rollup": "^0.64.1",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-terser": "^1.0.1"
   }
 }

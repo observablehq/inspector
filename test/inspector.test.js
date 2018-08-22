@@ -49,4 +49,25 @@ describe("into", () => {
     inspector.fulfilled(42);
     expect(container).toMatchSnapshot();
   });
+
+  test("formats a string with template syntax if it has multiple newlines", () => {
+    const container = document.createElement("div");
+    const inspector = Inspector.into(container)();
+    inspector.fulfilled(Array.from({ length: 10 }, () => 'hi').join('\n'));
+    expect(container).toMatchSnapshot();
+  });
+
+  test("formats a string with JSON syntax if it doesn’t have many newlines", () => {
+    const container = document.createElement("div");
+    const inspector = Inspector.into(container)();
+    inspector.fulfilled(Array.from({ length: 10 }, () => 'hi').join(' '));
+    expect(container).toMatchSnapshot();
+  });
+
+  test("truncates a string with > 20 newlines", () => {
+    const container = document.createElement("div");
+    const inspector = Inspector.into(container)();
+    inspector.fulfilled(Array.from({ length: 30 }, () => 'hi').join('\n'));
+    expect(container).toMatchSnapshot();
+  });
 });

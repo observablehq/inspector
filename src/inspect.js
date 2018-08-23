@@ -18,9 +18,9 @@ export function inspect(value, shallow, expand) {
     case "undefined": { value += ""; break; }
     case "number": { value = value === 0 && 1 / value < 0 ? "-0" : value + ""; break; }
     case "bigint": { value = value + "n"; break; }
-    case "string": { value = formatString(value, shallow === false); break; }
     case "symbol": { value = formatSymbol(value); break; }
     case "function": { return inspectFunction(value); }
+    case "string": { return formatString(value, shallow === false, expand); }
     default: {
       if (value === null) { type = null, value = "null"; break; }
       if (value instanceof Date) { type = "date", value = formatDate(value); break; }

@@ -37,6 +37,21 @@
   vertical-align: middle;
 }
 
+.observablehq--string-expand {
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 80%;
+  background: #eee;
+  color: #888;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.observablehq--string-expand:hover {
+  color: #222;
+}
+
 .observablehq--field {
   text-indent: -1em;
   margin-left: 1em;
@@ -160,6 +175,11 @@ fixed(new Set([1, 2]))
 fixed({a:2, [Symbol('hi')]: 3})
 fixed(new Uint8Array([1, 2, 3]))
 fixed(new Uint16Array([1, 2, 3]))
+fixed("A short string")
+fixed({objProp: "A short string"})
+fixed(["A short string"])
+fixed(Array.from({ length: 1000 }, (_, i) => `hi ${i}`).join('\n'))
+fixed({obProp: Array.from({ length: 1000 }, (_, i) => `hi ${i}`).join('\n')})
 </script>
 </body>
 </html>

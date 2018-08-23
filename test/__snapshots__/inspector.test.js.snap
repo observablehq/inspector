@@ -246,3 +246,45 @@ hi
   </div>
 </div>
 `;
+
+exports[`into truncates a string with > 20 newlines 2`] = `
+<div>
+  <div
+    class="observablehq"
+  >
+    <div
+      class="observablehq--inspect"
+    >
+      <span
+        class="observablehq--string"
+      >
+        \`hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+      </span>
+      <span
+        class="observablehq--string-expand"
+      >
+        Show 1 truncated line
+      </span>
+    </div>
+  </div>
+</div>
+`;

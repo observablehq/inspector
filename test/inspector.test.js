@@ -70,4 +70,11 @@ describe("into", () => {
     inspector.fulfilled(Array.from({ length: 30 }, () => 'hi').join('\n'));
     expect(container).toMatchSnapshot();
   });
+
+  test("truncates a string with > 20 newlines", () => {
+    const container = document.createElement("div");
+    const inspector = Inspector.into(container)();
+    inspector.fulfilled(Array.from({ length: 21 }, () => 'hi').join('\n'));
+    expect(container).toMatchSnapshot();
+  });
 });

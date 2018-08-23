@@ -69,6 +69,8 @@ describe("into", () => {
     const inspector = Inspector.into(container)();
     inspector.fulfilled(Array.from({ length: 30 }, () => 'hi').join('\n'));
     expect(container).toMatchSnapshot();
+    container.querySelector(".observablehq--string-expand").dispatchEvent(new MouseEvent("mouseup"));
+    expect(container).toMatchSnapshot();
   });
 
   test("truncates a string with > 20 newlines", () => {

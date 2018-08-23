@@ -252,6 +252,49 @@ exports[`into truncates a string with > 20 newlines 2`] = `
   <div
     class="observablehq"
   >
+    <span
+      class="observablehq--string observablehq--inspect"
+    >
+      \`hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi\`
+    </span>
+  </div>
+</div>
+`;
+
+exports[`into truncates a string with > 20 newlines 3`] = `
+<div>
+  <div
+    class="observablehq"
+  >
     <div
       class="observablehq--inspect"
     >

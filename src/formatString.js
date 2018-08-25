@@ -25,7 +25,7 @@ export default function formatString(string, full, expanded) {
         replace(div, inspect(string, !full, true));
       });
       span.className = "observablehq--string";
-      span.textContent = "`" + lines.slice(0, NEWLINE_LIMIT).join('\n');
+      span.textContent = "`" + templatify(lines.slice(0, NEWLINE_LIMIT).join('\n'));
       return div;
     }
     const span = document.createElement("span");

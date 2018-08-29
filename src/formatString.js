@@ -3,33 +3,31 @@ import {inspect, replace} from "./inspect.js";
 /* eslint-disable no-control-regex */
 const NEWLINE_LIMIT = 20;
 
-export default function formatString(string, full, expanded) {
-  if (full && count(string, /["\n]/g) <= count(string, /`|\${/g)) {
-    const span = document.createElement("span");
-    span.className = "observablehq--string";
-    span.textContent = JSON.stringify(string);
-    return span;
-  }
-
-  if (full) {
-    const lines = string.split('\n');
+export default function formatString(string, shallow, expanded) {
+  if (shallow === false) {
+    if (count(string, /["\n]/g) <= count(string, /`|\${/g)) {
+      const span = document.createElement("span");
+      span.className = "observablehq--string";
+      span.textContent = JSON.stringify(string);
+      return span;
+    }
+    const lines = string.split("\n");
     if (lines.length > NEWLINE_LIMIT && !expanded) {
       const div = document.createElement("div");
-      const span = div.appendChild(document.createElement('span'));
-      const splitter = div.appendChild(document.createElement('span'));
+      div.className = "observablehq--string";
+      div.textContent = "`" + templatify(lines.slice(0, NEWLINE_LIMIT).join("\n"));
+      const splitter = div.appendChild(document.createElement("span"));
       const truncatedCount = lines.length - NEWLINE_LIMIT;
-      splitter.textContent = `Show ${truncatedCount} truncated line${truncatedCount > 1 ? 's': ''}`;
+      splitter.textContent = `Show ${truncatedCount} truncated line${truncatedCount > 1 ? "s": ""}`;
       splitter.className = "observablehq--string-expand";
       splitter.addEventListener("mouseup", function (event) {
         event.stopPropagation();
-        replace(div, inspect(string, !full, true));
+        replace(div, inspect(string, shallow, true));
       });
-      span.className = "observablehq--string";
-      span.textContent = "`" + templatify(lines.slice(0, NEWLINE_LIMIT).join('\n'));
       return div;
     }
     const span = document.createElement("span");
-    span.className = "observablehq--string";
+    span.className = `observablehq--string${expanded ? " observablehq--expanded" : ""}`;
     span.textContent = "`" + templatify(string) + "`";
     return span;
   }

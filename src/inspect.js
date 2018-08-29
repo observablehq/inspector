@@ -20,7 +20,7 @@ export function inspect(value, shallow, expand) {
     case "bigint": { value = value + "n"; break; }
     case "symbol": { value = formatSymbol(value); break; }
     case "function": { return inspectFunction(value); }
-    case "string": { return formatString(value, shallow === false, expand); }
+    case "string": { return formatString(value, shallow, expand); }
     default: {
       if (value === null) { type = null, value = "null"; break; }
       if (value instanceof Date) { type = "date", value = formatDate(value); break; }

@@ -211,12 +211,9 @@ exports[`into truncates a string with > 20 newlines 1`] = `
     class="observablehq"
   >
     <div
-      class="observablehq--inspect"
+      class="observablehq--string observablehq--inspect"
     >
-      <span
-        class="observablehq--string"
-      >
-        \`hi
+      \`hi
 hi
 hi
 hi
@@ -236,7 +233,6 @@ hi
 hi
 hi
 hi
-      </span>
       <span
         class="observablehq--string-expand"
       >
@@ -253,7 +249,7 @@ exports[`into truncates a string with > 20 newlines 2`] = `
     class="observablehq"
   >
     <span
-      class="observablehq--string observablehq--inspect"
+      class="observablehq--string observablehq--expanded observablehq--inspect"
     >
       \`hi
 hi
@@ -296,12 +292,9 @@ exports[`into truncates a string with > 20 newlines 3`] = `
     class="observablehq"
   >
     <div
-      class="observablehq--inspect"
+      class="observablehq--string observablehq--inspect"
     >
-      <span
-        class="observablehq--string"
-      >
-        \`hi
+      \`hi
 hi
 hi
 hi
@@ -321,7 +314,6 @@ hi
 hi
 hi
 hi
-      </span>
       <span
         class="observablehq--string-expand"
       >

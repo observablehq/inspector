@@ -1,5 +1,5 @@
 import dispatch from "./dispatch.js";
-import {inspect} from "./inspect.js";
+import { inspect } from "./inspect.js";
 
 const LOCATION_MATCH = /\s+\(\d+:\d+\)$/m;
 
@@ -10,22 +10,31 @@ export class Inspector {
     node.classList.add("observablehq");
   }
   pending() {
-    const {_node} = this;
+    const { _node } = this;
     _node.classList.remove("observablehq--error");
     _node.classList.add("observablehq--running");
   }
-  fulfilled(value) {
-    const {_node} = this;
-    if (!(value instanceof Element || value instanceof Text) || (value.parentNode && value.parentNode !== _node)) {
-      value = inspect(value, false, _node.firstChild // TODO Do this better.
-          && _node.firstChild.classList
-          && _node.firstChild.classList.contains("observablehq--expanded"));
+  fulfilled(value, name) {
+    const { _node } = this;
+    if (
+      !(value instanceof Element || value instanceof Text) ||
+      (value.parentNode && value.parentNode !== _node)
+    ) {
+      value = inspect(
+        value,
+        false,
+        _node.firstChild && // TODO Do this better.
+          _node.firstChild.classList &&
+          _node.firstChild.classList.contains("observablehq--expanded"),
+        name
+      );
       value.classList.add("observablehq--inspect");
     }
     _node.classList.remove("observablehq--running", "observablehq--error");
     if (_node.firstChild !== value) {
       if (_node.firstChild) {
-        while (_node.lastChild !== _node.firstChild) _node.removeChild(_node.lastChild);
+        while (_node.lastChild !== _node.firstChild)
+          _node.removeChild(_node.lastChild);
         _node.replaceChild(value, _node.firstChild);
       } else {
         _node.appendChild(value);
@@ -34,7 +43,7 @@ export class Inspector {
     dispatch(_node, "update");
   }
   rejected(error) {
-    const {_node} = this;
+    const { _node } = this;
     _node.classList.remove("observablehq--running");
     _node.classList.add("observablehq--error");
     while (_node.lastChild) _node.removeChild(_node.lastChild);
@@ -42,7 +51,7 @@ export class Inspector {
     span.className = "observablehq--inspect";
     span.textContent = (error + "").replace(LOCATION_MATCH, "");
     _node.appendChild(span);
-    dispatch(_node, "error", {error: error});
+    dispatch(_node, "error", { error: error });
   }
 }
 

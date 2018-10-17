@@ -3,7 +3,7 @@ import {inspect, replace} from "./inspect.js";
 /* eslint-disable no-control-regex */
 const NEWLINE_LIMIT = 20;
 
-export default function formatString(string, shallow, expanded) {
+export default function formatString(string, shallow, expanded, name) {
   if (shallow === false) {
     if (count(string, /["\n]/g) <= count(string, /`|\${/g)) {
       const span = document.createElement("span");
@@ -34,6 +34,11 @@ export default function formatString(string, shallow, expanded) {
 
   const span = document.createElement("span");
   span.className = "observablehq--string";
+  if (name) {
+    const n = span.appendChild(document.createElement("span"));
+    n.className = "observablehq--cellname";
+    n.innerText = `${name} = `;
+  }
   span.textContent = JSON.stringify(string.length > 100 ?
     `${string.slice(0, 50)}…${string.slice(-49)}` : string);
   return span;

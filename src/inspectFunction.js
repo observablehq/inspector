@@ -1,28 +1,18 @@
 var toString = Function.prototype.toString,
-  TYPE_ASYNC = { prefix: "async ƒ" },
-  TYPE_ASYNC_GENERATOR = { prefix: "async ƒ*" },
-  TYPE_CLASS = { prefix: "class" },
-  TYPE_FUNCTION = { prefix: "ƒ" },
-  TYPE_GENERATOR = { prefix: "ƒ*" };
+    TYPE_ASYNC = {prefix: "async ƒ"},
+    TYPE_ASYNC_GENERATOR = {prefix: "async ƒ*"},
+    TYPE_CLASS = {prefix: "class"},
+    TYPE_FUNCTION = {prefix: "ƒ"},
+    TYPE_GENERATOR = {prefix: "ƒ*"};
 
 export default function inspectFunction(f, name) {
-  var type,
-    m,
-    t = toString.call(f);
+  var type, m, t = toString.call(f);
 
   switch (f.constructor && f.constructor.name) {
-    case "AsyncFunction":
-      type = TYPE_ASYNC;
-      break;
-    case "AsyncGeneratorFunction":
-      type = TYPE_ASYNC_GENERATOR;
-      break;
-    case "GeneratorFunction":
-      type = TYPE_GENERATOR;
-      break;
-    default:
-      type = /^class\b/.test(t) ? TYPE_CLASS : TYPE_FUNCTION;
-      break;
+    case "AsyncFunction": type = TYPE_ASYNC; break;
+    case "AsyncGeneratorFunction": type = TYPE_ASYNC_GENERATOR; break;
+    case "GeneratorFunction": type = TYPE_GENERATOR; break;
+    default: type = /^class\b/.test(t) ? TYPE_CLASS : TYPE_FUNCTION; break;
   }
 
   // A class, possibly named.
@@ -42,11 +32,7 @@ export default function inspectFunction(f, name) {
   // (…)
   // async (…)
   if ((m = /^(?:async\s*)?\(\s*(\w+(?:\s*,\s*\w+)*)?\s*\)/.exec(t))) {
-    return formatFunction(
-      type,
-      m[1] ? "(" + m[1].replace(/\s*,\s*/g, ", ") + ")" : "()",
-      name
-    );
+    return formatFunction(type, m[1] ? "(" + m[1].replace(/\s*,\s*/g, ", ") + ")" : "()", name);
   }
 
   // A function, possibly: async, generator, anonymous, simply arguments.
@@ -54,16 +40,8 @@ export default function inspectFunction(f, name) {
   // function* name(…)
   // async function name(…)
   // async function* name(…)
-  if (
-    (m = /^(?:async\s*)?function(?:\s*\*)?(?:\s*\w+)?\s*\(\s*(\w+(?:\s*,\s*\w+)*)?\s*\)/.exec(
-      t
-    ))
-  ) {
-    return formatFunction(
-      type,
-      m[1] ? "(" + m[1].replace(/\s*,\s*/g, ", ") + ")" : "()",
-      name
-    );
+  if ((m = /^(?:async\s*)?function(?:\s*\*)?(?:\s*\w+)?\s*\(\s*(\w+(?:\s*,\s*\w+)*)?\s*\)/.exec(t))) {
+    return formatFunction(type, m[1] ? "(" + m[1].replace(/\s*,\s*/g, ", ") + ")" : "()", name);
   }
 
   // Something else, like destructuring, comments or default values.

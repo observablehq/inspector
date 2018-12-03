@@ -34,22 +34,28 @@ exports[`Inspector .fulfilled(value) 1`] = `
       </svg>
       Array(3) [
     </a>
-    <span
-      class="observablehq--number"
-    >
-      1
+    <span>
+      <span
+        class="observablehq--number"
+      >
+        1
+      </span>
     </span>
     , 
-    <span
-      class="observablehq--number"
-    >
-      2
+    <span>
+      <span
+        class="observablehq--number"
+      >
+        2
+      </span>
     </span>
     , 
-    <span
-      class="observablehq--number"
-    >
-      3
+    <span>
+      <span
+        class="observablehq--number"
+      >
+        3
+      </span>
     </span>
     ]
   </span>
@@ -89,10 +95,12 @@ exports[`Inspector .fulfilled(value) 2`] = `
           0
       </span>
       : 
-      <span
-        class="observablehq--number"
-      >
-        1
+      <span>
+        <span
+          class="observablehq--number"
+        >
+          1
+        </span>
       </span>
     </div>
     <div
@@ -104,10 +112,12 @@ exports[`Inspector .fulfilled(value) 2`] = `
           1
       </span>
       : 
-      <span
-        class="observablehq--number"
-      >
-        2
+      <span>
+        <span
+          class="observablehq--number"
+        >
+          2
+        </span>
       </span>
     </div>
     <div
@@ -119,10 +129,12 @@ exports[`Inspector .fulfilled(value) 2`] = `
           2
       </span>
       : 
-      <span
-        class="observablehq--number"
-      >
-        3
+      <span>
+        <span
+          class="observablehq--number"
+        >
+          3
+        </span>
       </span>
     </div>
     ]
@@ -160,9 +172,13 @@ exports[`into formats a string with JSON syntax if it doesn’t have many newlin
     class="observablehq"
   >
     <span
-      class="observablehq--string observablehq--inspect"
+      class="observablehq--inspect"
     >
-      "hi hi hi hi hi hi hi hi hi hi"
+      <span
+        class="observablehq--string"
+      >
+        "hi hi hi hi hi hi hi hi hi hi"
+      </span>
     </span>
   </div>
 </div>
@@ -174,9 +190,12 @@ exports[`into formats a string with template syntax if it has multiple newlines 
     class="observablehq"
   >
     <span
-      class="observablehq--string observablehq--inspect"
+      class="observablehq--inspect"
     >
-      \`hi
+      <span
+        class="observablehq--string"
+      >
+        \`hi
 hi
 hi
 hi
@@ -186,6 +205,7 @@ hi
 hi
 hi
 hi\`
+      </span>
     </span>
   </div>
 </div>
@@ -197,9 +217,13 @@ exports[`into into(div) 1`] = `
     class="observablehq"
   >
     <span
-      class="observablehq--number observablehq--inspect"
+      class="observablehq--inspect"
     >
-      42
+      <span
+        class="observablehq--number"
+      >
+        42
+      </span>
     </span>
   </div>
 </div>
@@ -211,9 +235,15 @@ exports[`into truncates a string with > 20 newlines 1`] = `
     class="observablehq"
   >
     <div
-      class="observablehq--string observablehq--inspect"
+      class="observablehq--inspect"
     >
-      \`hi
+      <span
+        class="observablehq--cellname"
+      />
+      <span
+        class="observablehq--string"
+      >
+        \`hi
 hi
 hi
 hi
@@ -233,6 +263,7 @@ hi
 hi
 hi
 hi
+      </span>
       <span
         class="observablehq--string-expand"
       >
@@ -249,9 +280,15 @@ exports[`into truncates a string with > 20 newlines 2`] = `
     class="observablehq"
   >
     <span
-      class="observablehq--string observablehq--expanded observablehq--inspect"
+      class="observablehq--inspect"
     >
-      \`hi
+      <span
+        class="observablehq--cellname"
+      />
+      <span
+        class="observablehq--string observablehq--expanded"
+      >
+        \`hi
 hi
 hi
 hi
@@ -281,6 +318,7 @@ hi
 hi
 hi
 hi\`
+      </span>
     </span>
   </div>
 </div>
@@ -292,9 +330,15 @@ exports[`into truncates a string with > 20 newlines 3`] = `
     class="observablehq"
   >
     <div
-      class="observablehq--string observablehq--inspect"
+      class="observablehq--inspect"
     >
-      \`hi
+      <span
+        class="observablehq--cellname"
+      />
+      <span
+        class="observablehq--string"
+      >
+        \`hi
 hi
 hi
 hi
@@ -314,6 +358,7 @@ hi
 hi
 hi
 hi
+      </span>
       <span
         class="observablehq--string-expand"
       >

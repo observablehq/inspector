@@ -40,11 +40,9 @@ export function inspect(value, shallow, expand, name) {
     n.className = "observablehq--cellname";
     n.innerText = `${name} = `;
   }
-  {
-    const n = span.appendChild(document.createElement("span"));
-    n.className = `observablehq--${type}`;
-    n.textContent = value;
-  }
+  const n = span.appendChild(document.createElement("span"));
+  n.className = `observablehq--${type}`;
+  n.textContent = value;
   return span;
 }
 

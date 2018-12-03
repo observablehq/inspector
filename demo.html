@@ -166,11 +166,23 @@ update();
 function fixed(input, name) {
   (new Inspector(demos.appendChild(document.createElement('div')))).fulfilled(input, name);
 }
+
+class A {}
 fixed([1, 2, 3, [2, 3]], 'b')
 fixed(function a() {}, 'a')
+fixed(new A(), 'aClassInstance')
+fixed(A, 'aClass')
+fixed(true, 'hasCarrots')
+fixed(undefined, 'isUndefined')
+fixed(/baz/g, 'myRegexp')
+fixed(100n, 'myBigInt')
 fixed(a => {}, 'a')
 fixed(function* a() {}, 'a')
-fixed(new Map([[1, 2]]), 'myMap')
+fixed(async function* a() {}, 'asyncGenerator')
+fixed(async function a() {}, 'async')
+fixed(new Map([[1, 2], [Symbol('yeah'), 'yeah']]), 'myMap')
+fixed(new Date(), 'today')
+fixed(new Date('1/1/2020'), 'just a day')
 fixed(new Set([1, 2]), 'mySet')
 fixed({a:2, [Symbol('hi')]: 3}, 'q')
 fixed(new Uint8Array([1, 2, 3]), 'z')

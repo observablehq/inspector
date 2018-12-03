@@ -28,7 +28,7 @@ export default function inspectFunction(f, name) {
   // A class, possibly named.
   // class Name
   if (type === TYPE_CLASS) {
-    return formatFunction(type, "", name);
+    return formatFunction(type, " " + f.name, name);
   }
 
   // An arrow function with a single argument.

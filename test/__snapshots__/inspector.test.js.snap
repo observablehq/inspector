@@ -239,7 +239,9 @@ exports[`into truncates a string with > 20 newlines 1`] = `
     >
       <span
         class="observablehq--cellname"
-      />
+      >
+        myString = 
+      </span>
       <span
         class="observablehq--string"
       >
@@ -284,7 +286,9 @@ exports[`into truncates a string with > 20 newlines 2`] = `
     >
       <span
         class="observablehq--cellname"
-      />
+      >
+        myString = 
+      </span>
       <span
         class="observablehq--string observablehq--expanded"
       >
@@ -334,7 +338,9 @@ exports[`into truncates a string with > 20 newlines 3`] = `
     >
       <span
         class="observablehq--cellname"
-      />
+      >
+        myString = 
+      </span>
       <span
         class="observablehq--string"
       >

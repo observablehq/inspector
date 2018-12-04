@@ -1,4 +1,5 @@
 import dispatch from "./dispatch.js";
+import inspectName from "./inspectName.js";
 import {isarray, isindex} from "./array.js";
 import inspectCollapsed from "./collapsed.js";
 import formatSymbol from "./formatSymbol.js";
@@ -26,9 +27,7 @@ export default function inspectExpanded(object, _, name) {
   const span = document.createElement("span");
   span.className = "observablehq--expanded";
   if (name) {
-    const n = span.appendChild(document.createElement("span"));
-    n.className = "observablehq--cellname";
-    n.innerText = `${name} = `;
+    span.appendChild(inspectName(name));
   }
   const a = span.appendChild(document.createElement("a"));
   a.innerHTML =`<svg width=8 height=8 class='observablehq--caret'>

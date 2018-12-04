@@ -1,6 +1,7 @@
 import {isarray, isindex} from "./array.js";
 import inspectExpanded from "./expanded.js";
 import formatSymbol from "./formatSymbol.js";
+import inspectName from "./inspectName.js";
 import {inspect, replace} from "./inspect.js";
 import {isown, symbolsof, tagof, valueof} from "./object.js";
 
@@ -26,9 +27,7 @@ export default function inspectCollapsed(object, shallow, name) {
     const span = document.createElement("span");
     span.className = "observablehq--shallow";
     if (name) {
-      const n = span.appendChild(document.createElement("span"));
-      n.className = "observablehq--cellname";
-      n.innerText = `${name} = `;
+      span.appendChild(inspectName(name));
     }
     span.appendChild(document.createTextNode(tag));
     span.addEventListener("mouseup", function(event) {
@@ -41,9 +40,7 @@ export default function inspectCollapsed(object, shallow, name) {
   const span = document.createElement("span");
   span.className = "observablehq--collapsed";
   if (name) {
-    const n = span.appendChild(document.createElement("span"));
-    n.className = "observablehq--cellname";
-    n.innerText = `${name} = `;
+    span.appendChild(inspectName(name));
   }
   const a = span.appendChild(document.createElement("a"));
   a.innerHTML =`<svg width=8 height=8 class='observablehq--caret'>

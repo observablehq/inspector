@@ -1,20 +1,15 @@
+import inspectName from "./inspectName.js";
 import {inspect, replace} from "./inspect.js";
 
 /* eslint-disable no-control-regex */
 const NEWLINE_LIMIT = 20;
 
 export default function formatString(string, shallow, expanded, name) {
-  let nameLabel;
-  if (name) {
-    nameLabel = document.createElement("span");
-    nameLabel.className = "observablehq--cellname";
-    nameLabel.innerText = `${name} = `;
-  }
   if (shallow === false) {
     // String has fewer escapes displayed with double quotes
     if (count(string, /["\n]/g) <= count(string, /`|\${/g)) {
       const span = document.createElement("span");
-      if (nameLabel) span.appendChild(nameLabel);
+      if (name) span.appendChild(inspectName(name));
       const textValue = span.appendChild(document.createElement("span"));
       textValue.className = "observablehq--string";
       textValue.textContent = JSON.stringify(string);
@@ -23,14 +18,13 @@ export default function formatString(string, shallow, expanded, name) {
     const lines = string.split("\n");
     if (lines.length > NEWLINE_LIMIT && !expanded) {
       const div = document.createElement("div");
-      if (nameLabel) div.appendChild(nameLabel);
+      if (name) div.appendChild(inspectName(name));
       const textValue = div.appendChild(document.createElement("span"));
       textValue.className = "observablehq--string";
       textValue.textContent = "`" + templatify(lines.slice(0, NEWLINE_LIMIT).join("\n"));
       const splitter = div.appendChild(document.createElement("span"));
       const truncatedCount = lines.length - NEWLINE_LIMIT;
-      splitter.textContent = `Show ${truncatedCount} truncated line${truncatedCount > 1 ? "s": ""}`;
-      splitter.className = "observablehq--string-expand";
+      splitter.textContent = `Show ${truncatedCount} truncated line${truncatedCount > 1 ? "s": ""}`; splitter.className = "observablehq--string-expand";
       splitter.addEventListener("mouseup", function (event) {
         event.stopPropagation();
         replace(div, inspect(string, shallow, true, name));
@@ -38,7 +32,7 @@ export default function formatString(string, shallow, expanded, name) {
       return div;
     }
     const span = document.createElement("span");
-    if (nameLabel) span.appendChild(nameLabel);
+    if (name) span.appendChild(inspectName(name));
     const textValue = span.appendChild(document.createElement("span"));
     textValue.className = `observablehq--string${expanded ? " observablehq--expanded" : ""}`;
     textValue.textContent = "`" + templatify(string) + "`";
@@ -46,7 +40,7 @@ export default function formatString(string, shallow, expanded, name) {
   }
 
   const span = document.createElement("span");
-  if (nameLabel) span.appendChild(nameLabel);
+  if (name) span.appendChild(inspectName(name));
   const textValue = span.appendChild(document.createElement("span"));
   textValue.className = "observablehq--string";
   textValue.textContent = JSON.stringify(string.length > 100 ?

@@ -1,3 +1,4 @@
+import inspectName from "./inspectName.js";
 var toString = Function.prototype.toString,
     TYPE_ASYNC = {prefix: "async ƒ"},
     TYPE_ASYNC_GENERATOR = {prefix: "async ƒ*"},
@@ -52,9 +53,7 @@ function formatFunction(type, args, cellname) {
   var span = document.createElement("span");
   span.className = "observablehq--function";
   if (cellname) {
-    const n = span.appendChild(document.createElement("span"));
-    n.className = "observablehq--cellname";
-    n.innerText = `${cellname} = `;
+    span.appendChild(inspectName(cellname));
   }
   var spanType = span.appendChild(document.createElement("span"));
   spanType.className = "observablehq--keyword";

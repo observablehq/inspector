@@ -1,6 +1,7 @@
 import dispatch from "./dispatch.js";
 import inspectCollapsed from "./collapsed.js";
 import inspectExpanded from "./expanded.js";
+import inspectName from "./inspectName.js";
 import formatDate from "./formatDate.js";
 import formatError from "./formatError.js";
 import formatRegExp from "./formatRegExp.js";
@@ -35,11 +36,7 @@ export function inspect(value, shallow, expand, name) {
     }
   }
   const span = document.createElement("span");
-  if (name) {
-    const n = span.appendChild(document.createElement("span"));
-    n.className = "observablehq--cellname";
-    n.innerText = `${name} = `;
-  }
+  if (name) span.appendChild(inspectName(name));
   const n = span.appendChild(document.createElement("span"));
   n.className = `observablehq--${type}`;
   n.textContent = value;

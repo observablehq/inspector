@@ -42,8 +42,7 @@ export class Inspector {
     var div = document.createElement("div");
     div.className = "observablehq--inspect";
     if (name) div.appendChild(inspectName(name));
-    var span = div.appendChild(document.createElement("span"));
-    span.textContent = (error + "").replace(LOCATION_MATCH, "");
+    div.appendChild(document.createTextNode((error + "").replace(LOCATION_MATCH, "")));
     _node.appendChild(div);
     dispatch(_node, "error", {error: error});
   }

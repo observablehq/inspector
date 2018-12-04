@@ -1,5 +1,6 @@
 import dispatch from "./dispatch.js";
 import {inspect} from "./inspect.js";
+import inspectName from "./inspectName.js";
 
 const LOCATION_MATCH = /\s+\(\d+:\d+\)$/m;
 
@@ -33,15 +34,16 @@ export class Inspector {
     }
     dispatch(_node, "update");
   }
-  rejected(error) {
+  rejected(error, name) {
     const {_node} = this;
     _node.classList.remove("observablehq--running");
     _node.classList.add("observablehq--error");
     while (_node.lastChild) _node.removeChild(_node.lastChild);
-    var span = document.createElement("span");
-    span.className = "observablehq--inspect";
-    span.textContent = (error + "").replace(LOCATION_MATCH, "");
-    _node.appendChild(span);
+    var div = document.createElement("div");
+    div.className = "observablehq--inspect";
+    if (name) div.appendChild(inspectName(name));
+    div.appendChild(document.createTextNode((error + "").replace(LOCATION_MATCH, "")));
+    _node.appendChild(div);
     dispatch(_node, "error", {error: error});
   }
 }

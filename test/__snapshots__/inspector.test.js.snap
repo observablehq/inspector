@@ -152,11 +152,11 @@ exports[`Inspector .rejected(Error) 1`] = `
 <div
   class="observablehq observablehq--error"
 >
-  <span
+  <div
     class="observablehq--inspect"
   >
     Error: Danger!
-  </span>
+  </div>
 </div>
 `;
 

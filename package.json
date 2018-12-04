@@ -1,6 +1,6 @@
 {
   "name": "@observablehq/notebook-inspector",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "license": "ISC",
   "main": "dist/notebook-inspector.umd.js",
   "module": "dist/notebook-inspector.js",

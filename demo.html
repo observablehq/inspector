@@ -167,10 +167,16 @@ function fixed(input, name) {
   (new Inspector(demos.appendChild(document.createElement('div')))).fulfilled(input, name);
 }
 
+function rejected(input, name) {
+  (new Inspector(demos.appendChild(document.createElement('div')))).rejected(input, name);
+}
+
 class A {}
 fixed([1, 2, 3, [2, 3]], 'b')
 fixed(function a() {}, 'a')
 fixed(new A(), 'aClassInstance')
+fixed(new A(), 'aClassInstance')
+rejected(new Error(), 'myErrorCell')
 fixed(A, 'aClass')
 fixed(true, 'hasCarrots')
 fixed(undefined, 'isUndefined')

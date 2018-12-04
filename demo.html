@@ -163,23 +163,35 @@ function update() {
 input.addEventListener('input', update);
 update();
 
-function fixed(input) {
-  (new Inspector(demos.appendChild(document.createElement('div')))).fulfilled(input);
+function fixed(input, name) {
+  (new Inspector(demos.appendChild(document.createElement('div')))).fulfilled(input, name);
 }
-fixed([1, 2, 3, [2, 3]])
-fixed(function a() {})
-fixed(a => {})
-fixed(function* a() {})
-fixed(new Map([[1, 2]]))
-fixed(new Set([1, 2]))
-fixed({a:2, [Symbol('hi')]: 3})
-fixed(new Uint8Array([1, 2, 3]))
-fixed(new Uint16Array([1, 2, 3]))
-fixed("A short string")
-fixed({objProp: "A short string"})
-fixed(["A short string"])
-fixed(Array.from({ length: 1000 }, (_, i) => `hi ${i}`).join('\n'))
-fixed({obProp: Array.from({ length: 1000 }, (_, i) => `hi ${i}`).join('\n')})
+
+class A {}
+fixed([1, 2, 3, [2, 3]], 'b')
+fixed(function a() {}, 'a')
+fixed(new A(), 'aClassInstance')
+fixed(A, 'aClass')
+fixed(true, 'hasCarrots')
+fixed(undefined, 'isUndefined')
+fixed(/baz/g, 'myRegexp')
+fixed(100n, 'myBigInt')
+fixed(a => {}, 'a')
+fixed(function* a() {}, 'a')
+fixed(async function* a() {}, 'asyncGenerator')
+fixed(async function a() {}, 'async')
+fixed(new Map([[1, 2], [Symbol('yeah'), 'yeah']]), 'myMap')
+fixed(new Date(), 'today')
+fixed(new Date('1/1/2020'), 'just a day')
+fixed(new Set([1, 2]), 'mySet')
+fixed({a:2, [Symbol('hi')]: 3}, 'q')
+fixed(new Uint8Array([1, 2, 3]), 'z')
+fixed(new Uint16Array([1, 2, 3]), 'nothign')
+fixed("A short string", 'myString')
+fixed({objProp: "A short string"}, 'someVarName')
+fixed(["A short string"], 'An array')
+fixed(Array.from({ length: 1000 }, (_, i) => `hi ${i}`).join('\n'), 'bar')
+fixed({obProp: Array.from({ length: 1000 }, (_, i) => `hi ${i}`).join('\n')}, 'baz')
 </script>
 </body>
 </html>

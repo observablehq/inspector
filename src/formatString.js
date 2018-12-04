@@ -1,40 +1,49 @@
+import inspectName from "./inspectName.js";
 import {inspect, replace} from "./inspect.js";
 
 /* eslint-disable no-control-regex */
 const NEWLINE_LIMIT = 20;
 
-export default function formatString(string, shallow, expanded) {
+export default function formatString(string, shallow, expanded, name) {
   if (shallow === false) {
+    // String has fewer escapes displayed with double quotes
     if (count(string, /["\n]/g) <= count(string, /`|\${/g)) {
       const span = document.createElement("span");
-      span.className = "observablehq--string";
-      span.textContent = JSON.stringify(string);
+      if (name) span.appendChild(inspectName(name));
+      const textValue = span.appendChild(document.createElement("span"));
+      textValue.className = "observablehq--string";
+      textValue.textContent = JSON.stringify(string);
       return span;
     }
     const lines = string.split("\n");
     if (lines.length > NEWLINE_LIMIT && !expanded) {
       const div = document.createElement("div");
-      div.className = "observablehq--string";
-      div.textContent = "`" + templatify(lines.slice(0, NEWLINE_LIMIT).join("\n"));
+      if (name) div.appendChild(inspectName(name));
+      const textValue = div.appendChild(document.createElement("span"));
+      textValue.className = "observablehq--string";
+      textValue.textContent = "`" + templatify(lines.slice(0, NEWLINE_LIMIT).join("\n"));
       const splitter = div.appendChild(document.createElement("span"));
       const truncatedCount = lines.length - NEWLINE_LIMIT;
-      splitter.textContent = `Show ${truncatedCount} truncated line${truncatedCount > 1 ? "s": ""}`;
-      splitter.className = "observablehq--string-expand";
+      splitter.textContent = `Show ${truncatedCount} truncated line${truncatedCount > 1 ? "s": ""}`; splitter.className = "observablehq--string-expand";
       splitter.addEventListener("mouseup", function (event) {
         event.stopPropagation();
-        replace(div, inspect(string, shallow, true));
+        replace(div, inspect(string, shallow, true, name));
       });
       return div;
     }
     const span = document.createElement("span");
-    span.className = `observablehq--string${expanded ? " observablehq--expanded" : ""}`;
-    span.textContent = "`" + templatify(string) + "`";
+    if (name) span.appendChild(inspectName(name));
+    const textValue = span.appendChild(document.createElement("span"));
+    textValue.className = `observablehq--string${expanded ? " observablehq--expanded" : ""}`;
+    textValue.textContent = "`" + templatify(string) + "`";
     return span;
   }
 
   const span = document.createElement("span");
-  span.className = "observablehq--string";
-  span.textContent = JSON.stringify(string.length > 100 ?
+  if (name) span.appendChild(inspectName(name));
+  const textValue = span.appendChild(document.createElement("span"));
+  textValue.className = "observablehq--string";
+  textValue.textContent = JSON.stringify(string.length > 100 ?
     `${string.slice(0, 50)}…${string.slice(-49)}` : string);
   return span;
 }

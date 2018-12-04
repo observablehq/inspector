@@ -1,10 +1,11 @@
 import {isarray, isindex} from "./array.js";
 import inspectExpanded from "./expanded.js";
 import formatSymbol from "./formatSymbol.js";
+import inspectName from "./inspectName.js";
 import {inspect, replace} from "./inspect.js";
 import {isown, symbolsof, tagof, valueof} from "./object.js";
 
-export default function inspectCollapsed(object, shallow) {
+export default function inspectCollapsed(object, shallow, name) {
   const arrayish = isarray(object);
   let tag, fields, next;
 
@@ -25,6 +26,9 @@ export default function inspectCollapsed(object, shallow) {
   if (shallow) {
     const span = document.createElement("span");
     span.className = "observablehq--shallow";
+    if (name) {
+      span.appendChild(inspectName(name));
+    }
     span.appendChild(document.createTextNode(tag));
     span.addEventListener("mouseup", function(event) {
       event.stopPropagation();
@@ -35,6 +39,9 @@ export default function inspectCollapsed(object, shallow) {
 
   const span = document.createElement("span");
   span.className = "observablehq--collapsed";
+  if (name) {
+    span.appendChild(inspectName(name));
+  }
   const a = span.appendChild(document.createElement("a"));
   a.innerHTML =`<svg width=8 height=8 class='observablehq--caret'>
     <path d='M7 4L1 8V0z' fill='currentColor' />
@@ -42,7 +49,7 @@ export default function inspectCollapsed(object, shallow) {
   a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
   span.addEventListener("mouseup", function(event) {
     event.stopPropagation();
-    replace(span, inspectExpanded(object));
+    replace(span, inspectExpanded(object, null, name));
   }, true);
 
   fields = fields(object);

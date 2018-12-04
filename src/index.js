@@ -14,12 +14,12 @@ export class Inspector {
     _node.classList.remove("observablehq--error");
     _node.classList.add("observablehq--running");
   }
-  fulfilled(value) {
+  fulfilled(value, name) {
     const {_node} = this;
     if (!(value instanceof Element || value instanceof Text) || (value.parentNode && value.parentNode !== _node)) {
       value = inspect(value, false, _node.firstChild // TODO Do this better.
           && _node.firstChild.classList
-          && _node.firstChild.classList.contains("observablehq--expanded"));
+          && _node.firstChild.classList.contains("observablehq--expanded"), name);
       value.classList.add("observablehq--inspect");
     }
     _node.classList.remove("observablehq--running", "observablehq--error");

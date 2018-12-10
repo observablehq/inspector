@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/observablehq/inspector/tree/master.svg?style=svg)](https://circleci.com/gh/observablehq/inspector/tree/master)
 
-This library implements the default value renderer for Observable programs. When plugged in to the [Observable runtime](https://github.com/observablehq/runtime) as [observers](https://github.com/observablehq/runtime/blob/master/README.md#observers), inspectors can be used to insert DOM elements into the page or to render interactive inspectors for arbitrary values.
+This library implements the default value renderer for Observable programs. When used with the [Observable runtime](https://github.com/observablehq/runtime) as [observers](https://github.com/observablehq/runtime/blob/master/README.md#observers), inspectors can insert elements into the DOM and render interactive displays for arbitrary values.
 
 To install this library from [npm](https://www.npmjs.com/package/@observablehq/inspector):
 

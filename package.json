@@ -14,10 +14,14 @@
   },
   "scripts": {
     "test": "rollup -c && jest",
-    "precommit": "eslint .",
     "prepare": "rollup -c",
     "prepublishOnly": "cleancss -o dist/inspector-style.css src/style.css",
     "postpublish": "git push && git push --tags"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint ."
+    }
   },
   "esm": {
     "mode": "all",
@@ -29,6 +33,7 @@
   "devDependencies": {
     "clean-css-cli": "^4.2.1",
     "eslint": "^5.10.0",
+    "husky": "^1.2.0",
     "jest": "^23.6.0",
     "rollup": "^0.67.4",
     "rollup-plugin-node-resolve": "^4.0.0",

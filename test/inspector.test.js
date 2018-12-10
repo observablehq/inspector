@@ -1,5 +1,5 @@
 /* eslint-env jest */
-const { Inspector } = require("../dist/notebook-inspector.umd.js");
+const { Inspector } = require("../dist/inspector.umd.js");
 
 describe("Inspector", () => {
   let inspector, elem;

@@ -1,7 +1,7 @@
 import node from "rollup-plugin-node-resolve";
 import {terser} from "rollup-plugin-terser";
 
-const copyright = `// @observablehq/notebook-inspector Copyright ${(new Date).getFullYear()} Observable, Inc.`;
+const copyright = `// @observablehq/inspector Copyright ${(new Date).getFullYear()} Observable, Inc.`;
 
 function config(output) {
   return {
@@ -17,12 +17,12 @@ function config(output) {
 export default [
   config({
     format: "es",
-    file: "dist/notebook-inspector.js"
+    file: "dist/inspector.js"
   }),
   config({
     format: "umd",
     extend: true,
     name: "observablehq",
-    file: "dist/notebook-inspector.umd.js"
+    file: "dist/inspector.umd.js"
   })
 ];

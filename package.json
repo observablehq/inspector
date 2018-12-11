@@ -30,10 +30,10 @@
     "cjs": true
   },
   "files": [
-    "src/**.css",
-    "src/**.js",
-    "dist/**.css",
-    "dist/**.js"
+    "src/**/*.css",
+    "src/**/*.js",
+    "dist/**/*.css",
+    "dist/**/*.js"
   ],
   "dependencies": {
     "esm": "^3.0.84"

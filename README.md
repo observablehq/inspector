@@ -10,7 +10,7 @@ To install this library from [npm](https://www.npmjs.com/package/@observablehq/i
 npm install @observablehq/inspector
 ```
 
-This library is also available for download [from unpkg](https://unpkg.com/@observablehq/inspector/) as an [ES module](https://unpkg.com/@observablehq/inspector?module) and as a [UMD bundle](https://unpkg.com/@observablehq/inspector/dist/inspector.umd.js).
+This library is also available for download [from unpkg](https://unpkg.com/@observablehq/inspector/) as an [ES module](https://unpkg.com/@observablehq/inspector?module) and as a [UMD bundle](https://unpkg.com/@observablehq/inspector/dist/inspector.js).
 
 ## API Reference
 

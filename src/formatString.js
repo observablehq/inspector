@@ -54,6 +54,13 @@ function templatify(string) {
 
 function templatifyChar(char) {
   var code = char.charCodeAt(0);
+  switch (code) {
+    case 0x8: return "\\b";
+    case 0x9: return "\\t";
+    case 0xb: return "\\v";
+    case 0xc: return "\\f";
+    case 0xd: return "\\r";
+  }
   return code < 0x10 ? "\\x0" + code.toString(16)
       : code < 0x20 ? "\\x" + code.toString(16)
       : "\\" + char;

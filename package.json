@@ -2,8 +2,8 @@
   "name": "@observablehq/inspector",
   "version": "3.0.0",
   "license": "ISC",
-  "main": "dist/inspector.umd.js",
-  "module": "dist/inspector.js",
+  "main": "dist/inspector.js",
+  "module": "src/index.js",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
@@ -14,8 +14,7 @@
   },
   "scripts": {
     "test": "rollup -c && jest",
-    "prepare": "rollup -c",
-    "prepublishOnly": "cleancss -o dist/inspector-style.css src/style.css",
+    "prepublishOnly": "rollup -c && cleancss -o dist/inspector.css src/style.css",
     "postpublish": "git push && git push --tags"
   },
   "husky": {
@@ -25,8 +24,17 @@
   },
   "esm": {
     "mode": "all",
+    "mainFields": [
+      "module"
+    ],
     "cjs": true
   },
+  "files": [
+    "src/**.css",
+    "src/**.js",
+    "dist/**.css",
+    "dist/**.js"
+  ],
   "dependencies": {
     "esm": "^3.0.84"
   },

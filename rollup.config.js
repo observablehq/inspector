@@ -1,28 +1,21 @@
 import node from "rollup-plugin-node-resolve";
 import {terser} from "rollup-plugin-terser";
+import * as meta from "./package.json";
 
-const copyright = `// @observablehq/inspector Copyright ${(new Date).getFullYear()} Observable, Inc.`;
+const copyright = `// @observablehq/inspector v${meta.version} Copyright ${(new Date).getFullYear()} Observable, Inc.`;
 
-function config(output) {
-  return {
+export default [
+  {
     input: "src/index.js",
     plugins: [
       node(),
       terser({output: {preamble: copyright}})
     ],
-    output
-  };
-}
-
-export default [
-  config({
-    format: "es",
-    file: "dist/inspector.js"
-  }),
-  config({
-    format: "umd",
-    extend: true,
-    name: "observablehq",
-    file: "dist/inspector.umd.js"
-  })
+    output: {
+      format: "umd",
+      extend: true,
+      name: "observablehq",
+      file: "dist/inspector.js"
+    }
+  }
 ];

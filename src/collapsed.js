@@ -79,19 +79,15 @@ function* iterateSet(set) {
 }
 
 function* iterateArray(array) {
-  for (let i0 = -1, i1 = 0, n = array.length; i1 < n; ++i1) {
+  let i0 = -1, i1 = 0;
+  for (const n = array.length; i1 < n; ++i1) {
     if (i1 in array) {
-      let e = i1 - i0 - 1;
-      if (e > 0) {
-        const span = document.createElement("span");
-        span.className = "observablehq--empty";
-        span.textContent = e === 1 ? "empty" : `empty × ${i1 - i0 - 1}`;
-        yield span;
-      }
+      if (i1 > i0 + 1) yield formatEmpty(i1 - i0 - 1);
       yield inspect(valueof(array, i1), true);
       i0 = i1;
     }
   }
+  if (i1 > i0 + 1) yield formatEmpty(i1 - i0 - 1);
   for (const key in array) {
     if (!isindex(key) && isown(array, key)) {
       yield formatField(key, valueof(array, key), "observablehq--key");
@@ -111,6 +107,13 @@ function* iterateObject(object) {
   for (const symbol of symbolsof(object)) {
     yield formatField(formatSymbol(symbol), valueof(object, symbol), "observablehq--symbol");
   }
+}
+
+function formatEmpty(e) {
+  const span = document.createElement("span");
+  span.className = "observablehq--empty";
+  span.textContent = e === 1 ? "empty" : `empty × ${e}`;
+  return span;
 }
 
 function formatField(key, value, className) {

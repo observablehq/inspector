@@ -10,12 +10,18 @@ function isUTCMidnight(date) {
       && date.getUTCHours() === 0;
 }
 
+function formatYear(year) {
+  return year < 0 ? "-" + pad(-year, 6)
+    : year > 9999 ? "+" + pad(year, 6)
+    : pad(year, 4);
+}
+
 export default function formatDate(date) {
   return isNaN(date)
     ? "Invalid Date"
     : isUTCMidnight(date)
-      ? pad(date.getUTCFullYear(), 4) + "-" + pad(date.getUTCMonth() + 1, 2) + "-" + pad(date.getUTCDate(), 2)
-      : pad(date.getFullYear(), 4) + "-" + pad(date.getMonth() + 1, 2) + "-" + pad(date.getDate(), 2)
+      ? formatYear(date.getUTCFullYear()) + "-" + pad(date.getUTCMonth() + 1, 2) + "-" + pad(date.getUTCDate(), 2)
+      : formatYear(date.getFullYear()) + "-" + pad(date.getMonth() + 1, 2) + "-" + pad(date.getDate(), 2)
         + "T" + pad(date.getHours(), 2) + ":" + pad(date.getMinutes(), 2)
         + (date.getMilliseconds() ? ":" + pad(date.getSeconds(), 2) + "." + pad(date.getMilliseconds(), 3)
           : date.getSeconds() ? ":" + pad(date.getSeconds(), 2)

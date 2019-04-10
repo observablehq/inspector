@@ -6,6 +6,13 @@ describe("Inspector", () => {
   beforeEach(() => {
     elem = document.createElement("div");
     inspector = new Inspector(elem);
+    window.getSelection = () => {
+      return {
+        type: 'Caret',
+        removeAllRanges: () => {},
+        containsNode: () => false
+      };
+    };
   });
 
   test("initial state", () => {
@@ -27,7 +34,7 @@ describe("Inspector", () => {
   test(".fulfilled(value)", () => {
     inspector.fulfilled([1, 2, 3]);
     expect(elem).toMatchSnapshot();
-    elem.querySelector("a").dispatchEvent(new MouseEvent("mouseup"));
+    elem.querySelector("a").dispatchEvent(new MouseEvent("click"));
     expect(elem).toMatchSnapshot();
   });
 

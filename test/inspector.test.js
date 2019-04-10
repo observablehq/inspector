@@ -6,6 +6,13 @@ describe("Inspector", () => {
   beforeEach(() => {
     elem = document.createElement("div");
     inspector = new Inspector(elem);
+    window.getSelection = () => {
+      return {
+        type: 'Caret',
+        removeAllRanges: () => {},
+        containsNode: () => false
+      };
+    };
   });
 
   test("initial state", () => {

@@ -5,6 +5,16 @@ import inspectName from "./inspectName.js";
 import {inspect, replace} from "./inspect.js";
 import {isown, symbolsof, tagof, valueof} from "./object.js";
 
+function hasSelection(elem) {
+  const sel = window.getSelection();
+  return (
+    sel.type === "Range" &&
+    (sel.containsNode(elem, true) ||
+      sel.anchorNode.isSelfOrDescendant(elem) ||
+      sel.focusNode.isSelfOrDescendant(elem))
+  );
+}
+
 export default function inspectCollapsed(object, shallow, name) {
   const arrayish = isarray(object);
   let tag, fields, next;
@@ -31,6 +41,7 @@ export default function inspectCollapsed(object, shallow, name) {
     }
     span.appendChild(document.createTextNode(tag));
     span.addEventListener("mouseup", function(event) {
+      if (hasSelection(span)) return;
       event.stopPropagation();
       replace(span, inspectCollapsed(object));
     });
@@ -43,11 +54,12 @@ export default function inspectCollapsed(object, shallow, name) {
     span.appendChild(inspectName(name));
   }
   const a = span.appendChild(document.createElement("a"));
-  a.innerHTML =`<svg width=8 height=8 class='observablehq--caret'>
+  a.innerHTML = `<svg width=8 height=8 class='observablehq--caret'>
     <path d='M7 4L1 8V0z' fill='currentColor' />
   </svg>`;
   a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
   span.addEventListener("mouseup", function(event) {
+    if (hasSelection(span)) return;
     event.stopPropagation();
     replace(span, inspectExpanded(object, null, name));
   }, true);

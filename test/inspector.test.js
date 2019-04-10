@@ -34,7 +34,7 @@ describe("Inspector", () => {
   test(".fulfilled(value)", () => {
     inspector.fulfilled([1, 2, 3]);
     expect(elem).toMatchSnapshot();
-    elem.querySelector("a").dispatchEvent(new MouseEvent("click"));
+    elem.querySelector("a").dispatchEvent(new MouseEvent("mouseup"));
     expect(elem).toMatchSnapshot();
   });
 

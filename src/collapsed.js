@@ -40,7 +40,7 @@ export default function inspectCollapsed(object, shallow, name) {
       span.appendChild(inspectName(name));
     }
     span.appendChild(document.createTextNode(tag));
-    span.addEventListener("click", function(event) {
+    span.addEventListener("mouseup", function(event) {
       if (hasSelection(span)) return;
       event.stopPropagation();
       replace(span, inspectCollapsed(object));
@@ -58,7 +58,7 @@ export default function inspectCollapsed(object, shallow, name) {
     <path d='M7 4L1 8V0z' fill='currentColor' />
   </svg>`;
   a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
-  span.addEventListener("click", function(event) {
+  span.addEventListener("mouseup", function(event) {
     if (hasSelection(span)) return;
     event.stopPropagation();
     replace(span, inspectExpanded(object, null, name));

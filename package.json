@@ -41,10 +41,10 @@
   "devDependencies": {
     "clean-css-cli": "^4.2.1",
     "eslint": "^5.10.0",
-    "husky": "^1.2.0",
-    "jest": "^23.6.0",
-    "rollup": "^0.67.4",
-    "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-terser": "^3.0.0"
+    "husky": "^2.3.0",
+    "jest": "^24.8.0",
+    "rollup": "^1.12.3",
+    "rollup-plugin-node-resolve": "^5.0.0",
+    "rollup-plugin-terser": "^5.0.0"
   }
 }

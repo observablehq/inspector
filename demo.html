@@ -1,5 +1,6 @@
 <html>
 <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+<script src='https://cdn.jsdelivr.net/npm/immutable@4.0.0-rc.12/dist/immutable.min.js'></script>
 <style>
 :root {
   --syntax_normal: #1b1e23;
@@ -182,7 +183,7 @@ fixed(A, 'aClass')
 fixed(true, 'hasCarrots')
 fixed(undefined, 'isUndefined')
 fixed(/baz/g, 'myRegexp')
-fixed(100n, 'myBigInt')
+fixed(typeof BigInt !== 'undefined' ? BigInt(100) : 100, 'myBigInt')
 fixed(a => {}, 'a')
 fixed(function* a() {}, 'a')
 fixed(async function* a() {}, 'asyncGenerator')
@@ -194,6 +195,16 @@ fixed(new Set([1, 2]), 'mySet')
 fixed({a:2, [Symbol('hi')]: 3}, 'q')
 fixed(new Uint8Array([1, 2, 3]), 'z')
 fixed(new Uint16Array([1, 2, 3]), 'nothign')
+fixed(Immutable.Set([1, 2, 3]), 'immutableSet')
+fixed(Immutable.Set(Array.from({ length: 100 }, (_, i) => i)), 'immutableSet')
+fixed(Immutable.OrderedSet([1, 2, 3]), 'immutableOrderedSet')
+fixed(Immutable.List([1, 2, 3]), 'immutableList')
+fixed(Immutable.List([1, Immutable.List([1, 2, 3]), 3]), 'immutableListNested')
+fixed(Immutable.Stack([1, 2, 3]), 'immutableStack')
+fixed(Immutable.Map([[1, 2], [2, 3], [3, 4]]), 'immutableMap')
+fixed(Immutable.Map([[Immutable.List([1, 2, 3]), 2], [2, 3], [3, 4]]), 'immutableMap')
+fixed(Immutable.OrderedMap([[1, 2], [2, 3], [3, 4]]), 'immutableOrderedMap')
+fixed(Immutable.Record({a: 1})({ b:2}), 'immutableRecord')
 fixed("A short string", 'myString')
 fixed({objProp: "A short string"}, 'someVarName')
 fixed(["A short string"], 'An array')

@@ -1,6 +1,6 @@
 {
   "name": "@observablehq/inspector",
-  "version": "3.0.5",
+  "version": "3.1.0",
   "license": "ISC",
   "main": "dist/inspector.js",
   "module": "src/index.js",

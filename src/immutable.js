@@ -20,19 +20,24 @@ const SYMBOLS = [
 ];
 
 export function immutableName(obj) {
-  let symbols = SYMBOLS.filter(({ symbol }) => obj[symbol] === true);
-  if (!symbols.length) return;
+  try {
+    let symbols = SYMBOLS.filter(({ symbol }) => obj[symbol] === true);
+    if (!symbols.length) return;
 
-  let name = symbols.find(s => !s.modifier);
-  let prefix = name.name === "Map" && symbols.find(s => s.modifier && s.prefix);
+    let name = symbols.find(s => !s.modifier);
+    let prefix =
+      name.name === "Map" && symbols.find(s => s.modifier && s.prefix);
 
-  const arrayish = symbols.some(s => s.arrayish);
-  const setish = symbols.some(s => s.setish);
+    const arrayish = symbols.some(s => s.arrayish);
+    const setish = symbols.some(s => s.setish);
 
-  return {
-    name: `${prefix ? prefix.name : ""}${name.name}`,
-    symbols,
-    arrayish: arrayish && !setish,
-    setish
-  };
+    return {
+      name: `${prefix ? prefix.name : ""}${name.name}`,
+      symbols,
+      arrayish: arrayish && !setish,
+      setish
+    };
+  } catch (e) {
+    return null;
+  }
 }

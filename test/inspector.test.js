@@ -1,5 +1,6 @@
 /* eslint-env jest */
 const { Inspector } = require("../dist/inspector.js");
+const Immutable = require("immutable");
 
 describe("Inspector", () => {
   let inspector, elem;
@@ -8,7 +9,7 @@ describe("Inspector", () => {
     inspector = new Inspector(elem);
     window.getSelection = () => {
       return {
-        type: 'Caret',
+        type: "Caret",
         removeAllRanges: () => {},
         containsNode: () => false
       };
@@ -94,5 +95,44 @@ describe("into", () => {
       "myString"
     );
     expect(container).toMatchSnapshot();
+  });
+});
+
+describe("immutable", () => {
+  let inspector, elem;
+  beforeEach(() => {
+    elem = document.createElement("div");
+    inspector = new Inspector(elem);
+    window.getSelection = () => {
+      return {
+        type: "Caret",
+        removeAllRanges: () => {},
+        containsNode: () => false
+      };
+    };
+  });
+  test("Immutable.Set", () => {
+    inspector.fulfilled(Immutable.Set([1, 2, 3]));
+    expect(elem).toMatchSnapshot();
+    elem.querySelector("a").dispatchEvent(new MouseEvent("mouseup"));
+    expect(elem).toMatchSnapshot();
+  });
+  test("Immutable.Map", () => {
+    inspector.fulfilled(Immutable.Map([[1, 2]]));
+    expect(elem).toMatchSnapshot();
+    elem.querySelector("a").dispatchEvent(new MouseEvent("mouseup"));
+    expect(elem).toMatchSnapshot();
+  });
+  test("Immutable.List", () => {
+    inspector.fulfilled(Immutable.List([1, 2]));
+    expect(elem).toMatchSnapshot();
+    elem.querySelector("a").dispatchEvent(new MouseEvent("mouseup"));
+    expect(elem).toMatchSnapshot();
+  });
+  test("Immutable.Record", () => {
+    inspector.fulfilled(Immutable.Record({ a: 1 })({ a: 21 }));
+    expect(elem).toMatchSnapshot();
+    elem.querySelector("a").dispatchEvent(new MouseEvent("mouseup"));
+    expect(elem).toMatchSnapshot();
   });
 });

@@ -3,9 +3,19 @@ const SYMBOLS = [
   { symbol: "@@__IMMUTABLE_KEYED__@@", name: "Keyed", modifier: true },
   { symbol: "@@__IMMUTABLE_LIST__@@", name: "List", arrayish: true },
   { symbol: "@@__IMMUTABLE_MAP__@@", name: "Map" },
-  { symbol: "@@__IMMUTABLE_ORDERED__@@", name: "Ordered", modifier: true, prefix: true },
+  {
+    symbol: "@@__IMMUTABLE_ORDERED__@@",
+    name: "Ordered",
+    modifier: true,
+    prefix: true
+  },
   { symbol: "@@__IMMUTABLE_RECORD__@@", name: "Record" },
-  { symbol: "@@__IMMUTABLE_SET__@@", name: "Set", arrayish: true, setish: true },
+  {
+    symbol: "@@__IMMUTABLE_SET__@@",
+    name: "Set",
+    arrayish: true,
+    setish: true
+  },
   { symbol: "@@__IMMUTABLE_STACK__@@", name: "Stack", arrayish: true }
 ];
 
@@ -14,10 +24,10 @@ export function immutableName(obj) {
   if (!symbols.length) return;
 
   let name = symbols.find(s => !s.modifier);
-  let prefix = name.name === 'Map' && symbols.find(s => s.modifier && s.prefix);
+  let prefix = name.name === "Map" && symbols.find(s => s.modifier && s.prefix);
 
-  const arrayish = symbols.find(s => s.arrayish);
-  const setish = symbols.find(s => s.setish);
+  const arrayish = symbols.some(s => s.arrayish);
+  const setish = symbols.some(s => s.setish);
 
   return {
     name: `${prefix ? prefix.name : ""}${name.name}`,

@@ -24,8 +24,8 @@ export function immutableName(obj) {
     let symbols = SYMBOLS.filter(({ symbol }) => obj[symbol] === true);
     if (!symbols.length) return;
 
-    let name = symbols.find(s => !s.modifier);
-    let prefix =
+    const name = symbols.find(s => !s.modifier);
+    const prefix =
       name.name === "Map" && symbols.find(s => s.modifier && s.prefix);
 
     const arrayish = symbols.some(s => s.arrayish);

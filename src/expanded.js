@@ -5,10 +5,11 @@ import inspectCollapsed from "./collapsed.js";
 import formatSymbol from "./formatSymbol.js";
 import {inspect, replace} from "./inspect.js";
 import {isown, symbolsof, tagof, valueof} from "./object.js";
+import {immutableName} from "./immutable.js";
 
 export default function inspectExpanded(object, _, name) {
-  const arrayish = isarray(object);
-  let tag, fields, next;
+  let arrayish = isarray(object);
+  let tag, fields, next, n;
 
   if (object instanceof Map) {
     tag = `Map(${object.size})`;
@@ -19,6 +20,10 @@ export default function inspectExpanded(object, _, name) {
   } else if (arrayish) {
     tag = `${object.constructor.name}(${object.length})`;
     fields = iterateArray;
+  } else if ((n = immutableName(object))) {
+    tag = `Immutable.${n.name}${n.name === 'Record' ? '' : `(${object.size})`}`;
+    arrayish = n.arrayish;
+    fields = n.arrayish ? iterateImArray : n.setish ? iterateImSet : iterateImObject;
   } else {
     tag = tagof(object);
     fields = iterateObject;
@@ -79,6 +84,12 @@ function* iterateSet(set) {
   yield* iterateObject(set);
 }
 
+function* iterateImSet(set) {
+  for (const value of set) {
+    yield formatSetField(value);
+  }
+}
+
 function* iterateArray(array) {
   for (let i = 0, n = array.length; i < n; ++i) {
     if (i in array) {
@@ -95,6 +106,13 @@ function* iterateArray(array) {
   }
 }
 
+function* iterateImArray(array) {
+  let i1 = 0;
+  for (const n = array.size; i1 < n; ++i1) {
+    yield formatField(i1, array.get(i1), true);
+  }
+}
+
 function* iterateObject(object) {
   for (const key in object) {
     if (isown(object, key)) {
@@ -103,6 +121,12 @@ function* iterateObject(object) {
   }
   for (const symbol of symbolsof(object)) {
     yield formatField(formatSymbol(symbol), valueof(object, symbol), "observablehq--symbol");
+  }
+}
+
+function* iterateImObject(object) {
+  for (const [key, value] of object) {
+    yield formatField(key, value, "observablehq--key");
   }
 }
 

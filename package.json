@@ -41,7 +41,7 @@
   "devDependencies": {
     "clean-css-cli": "^4.2.1",
     "eslint": "^6.0.1",
-    "husky": "^2.3.0",
+    "husky": "^3.0.2",
     "immutable": "^4.0.0-rc.12",
     "jest": "^24.8.0",
     "rollup": "^1.14.6",

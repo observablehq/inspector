@@ -36,7 +36,7 @@
     "dist/**/*.js"
   ],
   "dependencies": {
-    "esm": "^3.0.84"
+    "esm": "^3.2.25"
   },
   "devDependencies": {
     "clean-css-cli": "^4.2.1",

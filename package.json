@@ -39,7 +39,7 @@
     "esm": "^3.0.84"
   },
   "devDependencies": {
-    "clean-css-cli": "^4.2.1",
+    "clean-css-cli": "^4.3.0",
     "eslint": "^6.0.1",
     "husky": "^2.3.0",
     "immutable": "^4.0.0-rc.12",

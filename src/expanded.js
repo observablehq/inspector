@@ -7,6 +7,8 @@ import {inspect, replace} from "./inspect.js";
 import {isown, symbolsof, tagof, valueof} from "./object.js";
 import {immutableName} from "./immutable.js";
 
+const {getPrototypeOf, getOwnPropertyDescriptors} = Object;
+
 export default function inspectExpanded(object, _, name, proto) {
   let arrayish = isarray(object);
   let tag, fields, next, n;
@@ -125,7 +127,7 @@ function* iterateImArray(array) {
 }
 
 function* iterateProto(object) {
-  for (const key in Object.getOwnPropertyDescriptors(object)) {
+  for (const key in getOwnPropertyDescriptors(object)) {
     yield formatField(key, valueof(object, key), "observablehq--key");
   }
   for (const symbol of symbolsof(object)) {
@@ -136,8 +138,9 @@ function* iterateProto(object) {
     );
   }
 
-  if (Object.getPrototypeOf(object)) {
-    yield formatPrototype(Object.getPrototypeOf(object));
+  const proto = getPrototypeOf(object);
+  if (proto) {
+    yield formatPrototype(proto);
   }
 }
 
@@ -155,8 +158,9 @@ function* iterateObject(object) {
     );
   }
 
-  if (Object.getPrototypeOf(object)) {
-    yield formatPrototype(Object.getPrototypeOf(object));
+  const proto = getPrototypeOf(object);
+  if (proto) {
+    yield formatPrototype(proto);
   }
 }
 

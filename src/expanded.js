@@ -125,11 +125,6 @@ function* iterateImArray(array) {
 }
 
 function* iterateProto(object) {
-  for (const key in object) {
-    if (isown(object, key)) {
-      yield formatField(key, valueof(object, key), "observablehq--key");
-    }
-  }
   for (const key in Object.getOwnPropertyDescriptors(object)) {
     yield formatField(key, valueof(object, key), "observablehq--key");
   }

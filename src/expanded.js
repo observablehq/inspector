@@ -1,11 +1,11 @@
 import dispatch from "./dispatch.js";
 import inspectName from "./inspectName.js";
-import { isarray, isindex } from "./array.js";
+import {isarray, isindex} from "./array.js";
 import inspectCollapsed from "./collapsed.js";
 import formatSymbol from "./formatSymbol.js";
-import { inspect, replace } from "./inspect.js";
-import { isown, symbolsof, tagof, valueof } from "./object.js";
-import { immutableName } from "./immutable.js";
+import {inspect, replace} from "./inspect.js";
+import {isown, symbolsof, tagof, valueof} from "./object.js";
+import {immutableName} from "./immutable.js";
 
 export default function inspectExpanded(object, _, name, proto) {
   let arrayish = isarray(object);

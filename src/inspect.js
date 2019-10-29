@@ -12,7 +12,7 @@ import {FORBIDDEN} from "./object.js";
 
 const {prototype: {toString}} = Object;
 
-export function inspect(value, shallow, expand, name) {
+export function inspect(value, shallow, expand, name, proto) {
   let type = typeof value;
   switch (type) {
     case "boolean":
@@ -30,7 +30,7 @@ export function inspect(value, shallow, expand, name) {
         case "[object RegExp]": { type = "regexp", value = formatRegExp(value, name); break; }
         case "[object Error]": // https://github.com/lodash/lodash/blob/master/isError.js#L26
         case "[object DOMException]": { type = "error", value = formatError(value, name); break; }
-        default: return (expand ? inspectExpanded : inspectCollapsed)(value, shallow, name);
+        default: return (expand ? inspectExpanded : inspectCollapsed)(value, shallow, name, proto);
       }
       break;
     }

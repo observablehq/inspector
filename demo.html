@@ -97,6 +97,10 @@ a[href],
   color: var(--syntax_key);
 }
 
+.observablehq--prototype-key {
+  color: #aaa;
+}
+
 .observablehq--empty {
   font-style: oblique;
 }
@@ -172,7 +176,7 @@ function rejected(input, name) {
   (new Inspector(demos.appendChild(document.createElement('div')))).rejected(input, name);
 }
 
-class A {}
+class A { b() {} }
 fixed([1, 2, 3, [2, 3]], 'b')
 fixed(function a() {}, 'a')
 fixed(new A(), 'aClassInstance')

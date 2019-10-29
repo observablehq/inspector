@@ -71,6 +71,10 @@
   color: var(--syntax_key);
 }
 
+.observablehq--prototype-key {
+  color: #aaa;
+}
+
 .observablehq--empty {
   font-style: oblique;
 }

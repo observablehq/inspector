@@ -1,13 +1,13 @@
 import dispatch from "./dispatch.js";
 import inspectName from "./inspectName.js";
-import {isarray, isindex} from "./array.js";
+import { isarray, isindex } from "./array.js";
 import inspectCollapsed from "./collapsed.js";
 import formatSymbol from "./formatSymbol.js";
-import {inspect, replace} from "./inspect.js";
-import {isown, symbolsof, tagof, valueof} from "./object.js";
-import {immutableName} from "./immutable.js";
+import { inspect, replace } from "./inspect.js";
+import { isown, symbolsof, tagof, valueof } from "./object.js";
+import { immutableName } from "./immutable.js";
 
-export default function inspectExpanded(object, _, name) {
+export default function inspectExpanded(object, _, name, proto) {
   let arrayish = isarray(object);
   let tag, fields, next, n;
 
@@ -21,9 +21,16 @@ export default function inspectExpanded(object, _, name) {
     tag = `${object.constructor.name}(${object.length})`;
     fields = iterateArray;
   } else if ((n = immutableName(object))) {
-    tag = `Immutable.${n.name}${n.name === 'Record' ? '' : `(${object.size})`}`;
+    tag = `Immutable.${n.name}${n.name === "Record" ? "" : `(${object.size})`}`;
     arrayish = n.arrayish;
-    fields = n.arrayish ? iterateImArray : n.setish ? iterateImSet : iterateImObject;
+    fields = n.arrayish
+      ? iterateImArray
+      : n.setish
+      ? iterateImSet
+      : iterateImObject;
+  } else if (proto) {
+    tag = tagof(object);
+    fields = iterateProto;
   } else {
     tag = tagof(object);
     fields = iterateObject;
@@ -35,13 +42,13 @@ export default function inspectExpanded(object, _, name) {
     span.appendChild(inspectName(name));
   }
   const a = span.appendChild(document.createElement("a"));
-  a.innerHTML =`<svg width=8 height=8 class='observablehq--caret'>
+  a.innerHTML = `<svg width=8 height=8 class='observablehq--caret'>
     <path d='M4 7L0 1h8z' fill='currentColor' />
   </svg>`;
   a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
   a.addEventListener("mouseup", function(event) {
     event.stopPropagation();
-    replace(span, inspectCollapsed(object, null, name));
+    replace(span, inspectCollapsed(object, null, name, proto));
   });
 
   fields = fields(object);
@@ -102,7 +109,11 @@ function* iterateArray(array) {
     }
   }
   for (const symbol of symbolsof(array)) {
-    yield formatField(formatSymbol(symbol), valueof(array, symbol), "observablehq--symbol");
+    yield formatField(
+      formatSymbol(symbol),
+      valueof(array, symbol),
+      "observablehq--symbol"
+    );
   }
 }
 
@@ -113,6 +124,28 @@ function* iterateImArray(array) {
   }
 }
 
+function* iterateProto(object) {
+  for (const key in object) {
+    if (isown(object, key)) {
+      yield formatField(key, valueof(object, key), "observablehq--key");
+    }
+  }
+  for (const key in Object.getOwnPropertyDescriptors(object)) {
+    yield formatField(key, valueof(object, key), "observablehq--key");
+  }
+  for (const symbol of symbolsof(object)) {
+    yield formatField(
+      formatSymbol(symbol),
+      valueof(object, symbol),
+      "observablehq--symbol"
+    );
+  }
+
+  if (Object.getPrototypeOf(object)) {
+    yield formatPrototype(Object.getPrototypeOf(object));
+  }
+}
+
 function* iterateObject(object) {
   for (const key in object) {
     if (isown(object, key)) {
@@ -120,7 +153,15 @@ function* iterateObject(object) {
     }
   }
   for (const symbol of symbolsof(object)) {
-    yield formatField(formatSymbol(symbol), valueof(object, symbol), "observablehq--symbol");
+    yield formatField(
+      formatSymbol(symbol),
+      valueof(object, symbol),
+      "observablehq--symbol"
+    );
+  }
+
+  if (Object.getPrototypeOf(object)) {
+    yield formatPrototype(Object.getPrototypeOf(object));
   }
 }
 
@@ -128,6 +169,18 @@ function* iterateImObject(object) {
   for (const [key, value] of object) {
     yield formatField(key, value, "observablehq--key");
   }
+}
+
+function formatPrototype(value) {
+  const item = document.createElement("div");
+  const span = item.appendChild(document.createElement("span"));
+  item.className = "observablehq--field";
+  span.className = "observablehq--prototype-key";
+  const name = value.constructor.name;
+  span.textContent = `  <${name} prototype>`;
+  item.appendChild(document.createTextNode(": "));
+  item.appendChild(inspect(value, undefined, undefined, undefined, true));
+  return item;
 }
 
 function formatField(key, value, className) {

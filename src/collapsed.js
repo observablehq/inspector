@@ -16,7 +16,7 @@ function hasSelection(elem) {
   );
 }
 
-export default function inspectCollapsed(object, shallow, name) {
+export default function inspectCollapsed(object, shallow, name, proto) {
   let arrayish = isarray(object);
   let tag, fields, next, n;
 
@@ -66,7 +66,7 @@ export default function inspectCollapsed(object, shallow, name) {
   span.addEventListener("mouseup", function(event) {
     if (hasSelection(span)) return;
     event.stopPropagation();
-    replace(span, inspectExpanded(object, null, name));
+    replace(span, inspectExpanded(object, null, name, proto));
   }, true);
 
   fields = fields(object);

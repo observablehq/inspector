@@ -8,6 +8,7 @@ import {isown, symbolsof, tagof, valueof} from "./object.js";
 import {immutableName} from "./immutable.js";
 
 const {getPrototypeOf, getOwnPropertyDescriptors} = Object;
+const objectPrototype = getPrototypeOf({});
 
 export default function inspectExpanded(object, _, name, proto) {
   let arrayish = isarray(object);
@@ -139,7 +140,7 @@ function* iterateProto(object) {
   }
 
   const proto = getPrototypeOf(object);
-  if (proto) {
+  if (proto && proto !== objectPrototype) {
     yield formatPrototype(proto);
   }
 }
@@ -159,7 +160,7 @@ function* iterateObject(object) {
   }
 
   const proto = getPrototypeOf(object);
-  if (proto) {
+  if (proto && proto !== objectPrototype) {
     yield formatPrototype(proto);
   }
 }

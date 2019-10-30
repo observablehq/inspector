@@ -1,6 +1,6 @@
 # @observablehq/inspector
 
-[![CircleCI](https://circleci.com/gh/observablehq/inspector/tree/master.svg?style=svg)](https://circleci.com/gh/observablehq/inspector/tree/master)
+[![Node CI](https://github.com/observablehq/inspector/workflows/Node%20CI/badge.svg)](https://github.com/observablehq/inspector/actions?workflow=Node+CI)
 
 This library implements the default value renderer for Observable programs. When used with the [Observable runtime](https://github.com/observablehq/runtime) as [observers](https://github.com/observablehq/runtime/blob/master/README.md#observers), inspectors can insert elements into the DOM and render interactive displays for arbitrary values.
 

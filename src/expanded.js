@@ -176,8 +176,7 @@ function formatPrototype(value) {
   const span = item.appendChild(document.createElement("span"));
   item.className = "observablehq--field";
   span.className = "observablehq--prototype-key";
-  const name = value.constructor.name;
-  span.textContent = `  <${name} prototype>`;
+  span.textContent = `  [[Prototype]]`;
   item.appendChild(document.createTextNode(": "));
   item.appendChild(inspect(value, undefined, undefined, undefined, true));
   return item;

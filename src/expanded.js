@@ -9,12 +9,17 @@ import {immutableName} from "./immutable.js";
 
 const {getPrototypeOf, getOwnPropertyDescriptors} = Object;
 const objectPrototype = getPrototypeOf({});
+const keysof = Object.keys;
+const protokeysof = object => keysof(getOwnPropertyDescriptors(object));
 
 export default function inspectExpanded(object, _, name, proto) {
   let arrayish = isarray(object);
   let tag, fields, next, n;
 
-  if (object instanceof Map) {
+  if (typeof object === "function") {
+    tag = `ƒ()`; // TODO
+    fields = iterateFunction;
+  } else if (object instanceof Map) {
     tag = `Map(${object.size})`;
     fields = iterateMap;
   } else if (object instanceof Set) {
@@ -111,13 +116,7 @@ function* iterateArray(array) {
       yield formatField(key, valueof(array, key), "observablehq--key");
     }
   }
-  for (const symbol of symbolsof(array)) {
-    yield formatField(
-      formatSymbol(symbol),
-      valueof(array, symbol),
-      "observablehq--symbol"
-    );
-  }
+  yield* iterateSymbols(array);
 }
 
 function* iterateImArray(array) {
@@ -128,41 +127,43 @@ function* iterateImArray(array) {
 }
 
 function* iterateProto(object) {
-  for (const key in getOwnPropertyDescriptors(object)) {
-    yield formatField(key, valueof(object, key), "observablehq--key");
-  }
-  for (const symbol of symbolsof(object)) {
-    yield formatField(
-      formatSymbol(symbol),
-      valueof(object, symbol),
-      "observablehq--symbol"
-    );
-  }
+  yield* iterateFields(object, protokeysof);
+  yield* iterateSymbols(object);
+  yield* iteratePrototypeOf(object);
+}
 
+function* iteratePrototypeOf(object) {
   const proto = getPrototypeOf(object);
   if (proto && proto !== objectPrototype) {
-    yield formatPrototype(proto);
+    yield formatField("<prototype>", proto, "observablehq--prototype-key", true);
+  }
+}
+
+function* iterateFields(object, keysof) {
+  for (const key of keysof(object)) {
+    yield formatField(key, valueof(object, key), "observablehq--key");
+  }
+}
+
+function* iterateSymbols(object) {
+  for (const symbol of symbolsof(object)) {
+    yield formatField(formatSymbol(symbol), valueof(object, symbol), "observablehq--symbol");
+  }
+}
+
+function* iterateFunction(fun) {
+  yield* iterateFields(fun, keysof);
+  yield* iterateSymbols(fun);
+  const proto = fun.prototype;
+  if (proto) {
+    yield formatField("prototype", proto, "observablehq--key", true);
   }
 }
 
 function* iterateObject(object) {
-  for (const key in object) {
-    if (isown(object, key)) {
-      yield formatField(key, valueof(object, key), "observablehq--key");
-    }
-  }
-  for (const symbol of symbolsof(object)) {
-    yield formatField(
-      formatSymbol(symbol),
-      valueof(object, symbol),
-      "observablehq--symbol"
-    );
-  }
-
-  const proto = getPrototypeOf(object);
-  if (proto && proto !== objectPrototype) {
-    yield formatPrototype(proto);
-  }
+  yield* iterateFields(object, keysof);
+  yield* iterateSymbols(object);
+  yield* iteratePrototypeOf(object);
 }
 
 function* iterateImObject(object) {
@@ -171,25 +172,14 @@ function* iterateImObject(object) {
   }
 }
 
-function formatPrototype(value) {
-  const item = document.createElement("div");
-  const span = item.appendChild(document.createElement("span"));
-  item.className = "observablehq--field";
-  span.className = "observablehq--prototype-key";
-  span.textContent = `  <prototype>`;
-  item.appendChild(document.createTextNode(": "));
-  item.appendChild(inspect(value, undefined, undefined, undefined, true));
-  return item;
-}
-
-function formatField(key, value, className) {
+function formatField(key, value, className, proto) {
   const item = document.createElement("div");
   const span = item.appendChild(document.createElement("span"));
   item.className = "observablehq--field";
   span.className = className;
   span.textContent = `  ${key}`;
   item.appendChild(document.createTextNode(": "));
-  item.appendChild(inspect(value));
+  item.appendChild(inspect(value, undefined, undefined, undefined, proto));
   return item;
 }
 

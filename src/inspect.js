@@ -7,7 +7,6 @@ import formatError from "./formatError.js";
 import formatRegExp from "./formatRegExp.js";
 import formatString from "./formatString.js";
 import formatSymbol from "./formatSymbol.js";
-import inspectFunction from "./inspectFunction.js";
 import {FORBIDDEN} from "./object.js";
 
 const {prototype: {toString}} = Object;
@@ -20,7 +19,6 @@ export function inspect(value, shallow, expand, name, proto) {
     case "number": { value = value === 0 && 1 / value < 0 ? "-0" : value + ""; break; }
     case "bigint": { value = value + "n"; break; }
     case "symbol": { value = formatSymbol(value, name); break; }
-    case "function": { return inspectFunction(value, name); }
     case "string": { return formatString(value, shallow, expand, name); }
     default: {
       if (value === null) { type = null, value = "null"; break; }

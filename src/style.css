@@ -100,3 +100,11 @@
   word-break: break-all;
   white-space: pre-wrap;
 }
+
+.observablehq--truncated {
+  font-size: 0;
+}
+.observablehq--ellipsis::after {
+  content: '\2026';
+  opacity: 0.75;
+}

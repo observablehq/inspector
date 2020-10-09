@@ -44,7 +44,7 @@ export default function formatString(string, shallow, expanded, name) {
   const textValue = span.appendChild(document.createElement("span"));
   textValue.className = "observablehq--string";
   textValue.textContent = JSON.stringify(string.length > 100 ?
-    `${string.slice(0, 50)}…${string.slice(-49)}` : string);
+    `${string.slice(0, 99)} …` : string);
   return span;
 }
 

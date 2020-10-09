@@ -105,6 +105,6 @@
   font-size: 0;
 }
 .observablehq--ellipsis::after {
-  content: '\2026';
-  opacity: 0.75;
+  content: "\2022\2022\2022";
+  color: var(--syntax_normal);
 }

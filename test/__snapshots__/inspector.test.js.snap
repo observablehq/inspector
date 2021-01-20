@@ -774,3 +774,65 @@ hi
   </div>
 </div>
 `;
+
+exports[`map and set proto map proto 1`] = `
+<div>
+  <div
+    class="observablehq"
+  >
+    <span
+      class="observablehq--collapsed observablehq--inspect"
+    >
+      <a>
+        <svg
+          class="observablehq--caret"
+          height="8"
+          width="8"
+        >
+          
+    
+          <path
+            d="M7 4L1 8V0z"
+            fill="currentColor"
+          />
+          
+  
+        </svg>
+        Map() {
+      </a>
+      }
+    </span>
+  </div>
+</div>
+`;
+
+exports[`map and set proto set proto 1`] = `
+<div>
+  <div
+    class="observablehq"
+  >
+    <span
+      class="observablehq--collapsed observablehq--inspect"
+    >
+      <a>
+        <svg
+          class="observablehq--caret"
+          height="8"
+          width="8"
+        >
+          
+    
+          <path
+            d="M7 4L1 8V0z"
+            fill="currentColor"
+          />
+          
+  
+        </svg>
+        Set() {
+      </a>
+      }
+    </span>
+  </div>
+</div>
+`;

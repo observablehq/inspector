@@ -15,11 +15,21 @@ export default function inspectExpanded(object, _, name, proto) {
   let tag, fields, next, n;
 
   if (object instanceof Map) {
-    tag = `Map(${object.size})`;
-    fields = iterateMap;
+    if (object instanceof object.constructor) {
+      tag = `Map(${object.size})`;
+      fields = iterateMap;
+    } else { // avoid incompatible receiver error for prototype
+      tag = "Map()";
+      fields = iterateObject;
+    }
   } else if (object instanceof Set) {
-    tag = `Set(${object.size})`;
-    fields = iterateSet;
+    if (object instanceof object.constructor) {
+      tag = `Set(${object.size})`;
+      fields = iterateSet;
+    } else { // avoid incompatible receiver error for prototype
+      tag = "Set()";
+      fields = iterateObject;
+    }
   } else if (arrayish) {
     tag = `${object.constructor.name}(${object.length})`;
     fields = iterateArray;

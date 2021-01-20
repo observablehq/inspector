@@ -98,6 +98,23 @@ describe("into", () => {
   });
 });
 
+describe("map and set proto", () => {
+  test("map proto", () => {
+    class SubMap extends Map {}
+    const container = document.createElement("div");
+    const inspector = Inspector.into(container)();
+    inspector.fulfilled(Object.getPrototypeOf(new SubMap()));
+    expect(container).toMatchSnapshot();
+  });
+  test("set proto", () => {
+    class SubSet extends Set {}
+    const container = document.createElement("div");
+    const inspector = Inspector.into(container)();
+    inspector.fulfilled(Object.getPrototypeOf(new SubSet()));
+    expect(container).toMatchSnapshot();
+  });
+});
+
 describe("immutable", () => {
   let inspector, elem;
   beforeEach(() => {

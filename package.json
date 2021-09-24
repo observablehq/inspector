@@ -17,11 +17,6 @@
     "prepublishOnly": "rollup -c && cleancss -o dist/inspector.css src/style.css",
     "postpublish": "git push && git push --tags"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "eslint ."
-    }
-  },
   "esm": {
     "mode": "all",
     "mainFields": [
@@ -39,7 +34,6 @@
     "clean-css-cli": "^4.3.0",
     "eslint": "^7.18.0",
     "esm": "^3.2.25",
-    "husky": "^4.3.8",
     "immutable": "^4.0.0-rc.12",
     "jest": "^26.6.3",
     "rollup": "^2.37.1",

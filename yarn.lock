@@ -2053,6 +2053,11 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
+isoformat@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/isoformat/-/isoformat-0.2.0.tgz#52c3dce6c281adb6cb7f060895a731b7b2d52c1b"
+  integrity sha512-iyxQ94xMvUZryoHVaXg/TSLM318/aO7xS7Ute+t4MkvZ17IDfe9MkI/MQuu7XgxbmTiGkeggNj+1f6wmxF876Q==
+
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"

@@ -2,7 +2,7 @@
 
 [![Node CI](https://github.com/observablehq/inspector/workflows/Node%20CI/badge.svg)](https://github.com/observablehq/inspector/actions?workflow=Node+CI)
 
-This library implements the default value renderer for Observable programs. When used with the [Observable runtime](https://github.com/observablehq/runtime) as [observers](https://github.com/observablehq/runtime/blob/master/README.md#observers), inspectors can insert elements into the DOM and render interactive displays for arbitrary values.
+This library implements the default value renderer for Observable programs. When used with the [Observable runtime](https://github.com/observablehq/runtime) as [observers](https://github.com/observablehq/runtime/blob/main/README.md#observers), inspectors can insert elements into the DOM and render interactive displays for arbitrary values.
 
 To install this library from [npm](https://www.npmjs.com/package/@observablehq/inspector):
 
@@ -16,7 +16,7 @@ This library is also available for download [from unpkg](https://unpkg.com/@obse
 
 ### Inspectors
 
-An inspector implements the Observable runtime’s [*Observer* interface](https://github.com/observablehq/runtime/blob/master/README.md#observers) by rendering the current value of its associated [variable](https://github.com/observablehq/runtime/blob/master/README.md#variables) to a given DOM element. Inspectors display DOM elements “as-is”, and create interactive “devtools”-style inspectors for other arbitrary values such as numbers and objects.
+An inspector implements the Observable runtime’s [*Observer* interface](https://github.com/observablehq/runtime/blob/main/README.md#observers) by rendering the current value of its associated [variable](https://github.com/observablehq/runtime/blob/main/README.md#variables) to a given DOM element. Inspectors display DOM elements “as-is”, and create interactive “devtools”-style inspectors for other arbitrary values such as numbers and objects.
 
 <a href="#Inspector" name="Inspector">#</a> new **Inspector**(*element*) [<>](https://github.com/observablehq/inspector/blob/master/src/index.js "Source")
 
@@ -36,4 +36,4 @@ Inspects the specified *error*, replacing the contents of this inspector’s *el
 
 <a href="#Inspector_into" name="Inspector_into">#</a> Inspector.**into**(*container*) [<>](https://github.com/observablehq/inspector/blob/master/src/index.js "Source")
 
-Returns a function that when passed a given [*variable*](https://github.com/observablehq/runtime/blob/master/README.md#variables), returns a new [*inspector*](#inspectors) attached to a new DIV element within the specifier *container* element. If *container* is a string, it represents a selector, and the *container* element becomes the matching selected element. This method can be used with [an Observable module definition](https://github.com/observablehq/runtime/blob/master/README.md#_define) as the observer factory to conveniently render an entire program.
+Returns a function that when passed a given [*variable*](https://github.com/observablehq/runtime/blob/main/README.md#variables), returns a new [*inspector*](#inspectors) attached to a new DIV element within the specifier *container* element. If *container* is a string, it represents a selector, and the *container* element becomes the matching selected element. This method can be used with [an Observable module definition](https://github.com/observablehq/runtime/blob/main/README.md#_define) as the observer factory to conveniently render an entire program.

@@ -46,8 +46,5 @@
     "module-alias": "^2.2.2",
     "rollup": "^3.2.5",
     "rollup-plugin-terser": "^7.0.2"
-  },
-  "publishConfig": {
-    "tag": "next"
   }
 }

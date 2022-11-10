@@ -1,46 +1,53 @@
 {
   "name": "@observablehq/inspector",
-  "version": "3.2.4",
-  "license": "ISC",
-  "main": "dist/inspector.js",
-  "module": "src/index.js",
+  "version": "4.0.0-rc.1",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
+  },
+  "license": "ISC",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "jsdelivr": "dist/inspector.js",
+  "unpkg": "dist/inspector.js",
+  "exports": {
+    "umd": "./dist/inspector.js",
+    "default": "./src/index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/observablehq/inspector.git"
   },
+  "files": [
+    "dist/**/*.css",
+    "dist/**/*.js",
+    "src/**/*.css",
+    "src/**/*.js"
+  ],
   "scripts": {
-    "test": "rollup -c && jest",
-    "prepublishOnly": "rollup -c && cleancss -o dist/inspector.css src/style.css",
+    "test": "mkdir -p test/output && mocha 'test/**/*-test.js' && eslint src test",
+    "prepublishOnly": "rm -rf dist && rollup -c && cleancss -o dist/inspector.css src/style.css",
     "postpublish": "git push && git push --tags"
   },
-  "esm": {
-    "mode": "all",
-    "mainFields": [
-      "module"
-    ],
-    "cjs": true
-  },
-  "files": [
-    "src/**/*.css",
-    "src/**/*.js",
-    "dist/**/*.css",
-    "dist/**/*.js"
-  ],
-  "devDependencies": {
-    "clean-css-cli": "^4.3.0",
-    "eslint": "^7.18.0",
-    "esm": "^3.2.25",
-    "immutable": "^4.0.0-rc.12",
-    "jest": "^26.6.3",
-    "rollup": "^2.37.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^7.0.2"
+  "_moduleAliases": {
+    "@observablehq/inspector": "./src/index.js"
   },
   "dependencies": {
     "isoformat": "^0.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "clean-css-cli": "^5.6.1",
+    "eslint": "^8.27.0",
+    "immutable": "^4.1.0",
+    "jsdom": "^20.0.2",
+    "mocha": "^10.1.0",
+    "module-alias": "^2.2.2",
+    "rollup": "^3.2.5",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }

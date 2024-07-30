@@ -11,8 +11,8 @@ function hasSelection(elem) {
   return (
     sel.type === "Range" &&
     (sel.containsNode(elem, true) ||
-      sel.anchorNode.isSelfOrDescendant(elem) ||
-      sel.focusNode.isSelfOrDescendant(elem))
+      elem.contains(sel.anchorNode) ||
+      elem.contains(sel.focusNode))
   );
 }
 

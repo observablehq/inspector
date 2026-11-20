@@ -37,7 +37,7 @@ export function immutableName(obj) {
       arrayish: arrayish && !setish,
       setish
     };
-  } catch (e) {
+  } catch {
     return null;
   }
 }

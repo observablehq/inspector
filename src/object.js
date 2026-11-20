@@ -20,7 +20,7 @@ export function valueof(object, key) {
     const value = object[key];
     if (value) value.constructor; // Test for SecurityError.
     return value;
-  } catch (ignore) {
+  } catch {
     return FORBIDDEN;
   }
 }

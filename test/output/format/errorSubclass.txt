@@ -1,0 +1,4 @@
+FooError: Danger!
+FooError: Danger!
+FooError: Danger!
+FooError: Danger!

@@ -1,0 +1,4 @@
+<div class="foo bar" title=greeting>hello, <b>world</b><!--comment--></div>
+<div class="foo bar" title=greeting>hello, <b>world</b><!--comment--></div>
+<div class="foo bar" title=greeting>hello, …</div>
+<div class="foo bar" …>…</div>

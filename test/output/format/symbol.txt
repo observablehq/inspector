@@ -1,0 +1,4 @@
+Symbol(foo)
+Symbol(foo)
+Symbol(foo)
+Symbol(foo)

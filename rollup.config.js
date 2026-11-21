@@ -6,15 +6,13 @@ const copyright = `// @observablehq/inspector v${meta.version} Copyright ${(new 
 
 export default [
   {
-    input: "src/index.js",
+    input: "build/index.js", // compiled by tsc
     plugins: [
       node(),
       terser({format: {preamble: copyright}})
     ],
     output: {
-      format: "umd",
-      extend: true,
-      name: "observablehq",
+      format: "es",
       file: "dist/inspector.js"
     }
   }

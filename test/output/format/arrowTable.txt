@@ -1,0 +1,4 @@
+Arrow.Table(3 × 2) [{a: 1, b: "x"}, {a: 2, b: "y"}, {a: 3, b: "z"} schema: Schema {fields: [Field {name: "a", type: Float64 {typeId: 3, precision: 2}, nullable: true, metadata: Map(0) {}}, Field {name: "b", type: Dictionary {typeId: -1, indices: Int32 {typeId: 2, isSigned: true, bitWidth: 32}, dictionary: Utf8 {typeId: 5}, isOrdered: false, id: 0}, nullable: true, metadata: Map(0) {}}], metadata: Map(0) {}, dictionaries: Map(1) {0 => Utf8 {typeId: 5}}, metadataVersion: 4}]
+Arrow.Table(3 × 2) [{a: 1, b: "x"}, {a: 2, …}, … schema: Schema {fields: [Field {…}, …], …}]
+Arrow.Table(3 × 2) [… schema: Schema {fields: […], …}]
+Arrow.Table(3 × 2) [… schema: Schema {…}]

@@ -1,0 +1,4 @@
+[1, empty × 2, 4, empty × 1, 6]
+[1, empty × 2, 4, empty × 1, 6]
+[1, empty × 2, 4, empty × 1, 6]
+[1, empty × 2, 4, empty × 1, …]
